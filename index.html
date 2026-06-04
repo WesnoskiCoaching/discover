@@ -56,8 +56,6 @@
   }
   nav.tabs a:hover { background: var(--bg-elev); color: var(--text); }
   nav.tabs a.active { background: var(--teal); color: #0a0e10; }
-  .setter-only { display: none; }
-  body.setter-mode .setter-only { display: revert; }
 
   main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
   section { padding: 60px 0; border-bottom: 1px solid var(--border); }
@@ -235,7 +233,6 @@
   }
   .tier ul li::before { content: "✓"; color: var(--teal); font-weight: 700; flex-shrink: 0; }
 
-  /* ON-CALL OFFER (setter only) */
   .on-call-offer {
     background: linear-gradient(180deg, rgba(245,216,66,0.08), transparent);
     border: 1px dashed var(--yellow);
@@ -366,14 +363,6 @@
     font-size: 15px; line-height: 1.6;
   }
 
-  /* SETTER */
-  .setter-section {
-    background: linear-gradient(180deg, rgba(245,216,66,0.05), transparent);
-    border: 1px solid rgba(245,216,66,0.2);
-    border-radius: 12px;
-    padding: 32px; margin-top: 24px;
-  }
-  .setter-section h3 { color: var(--yellow); }
   .checklist { list-style: none; padding: 0; margin-top: 16px; }
   .checklist li {
     padding: 10px 0; border-bottom: 1px solid var(--border);
@@ -393,16 +382,6 @@
   }
   .quick-link:hover { border-color: var(--teal); color: var(--teal); }
   .quick-link .arrow { color: var(--teal); }
-  .copyable {
-    background: var(--bg-elev); border: 1px solid var(--border);
-    border-radius: 8px; padding: 16px; margin-top: 12px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 13px; color: var(--text-muted);
-    white-space: pre-wrap; cursor: pointer;
-    transition: border-color 0.15s;
-  }
-  .copyable:hover { border-color: var(--teal); }
-  .copyable.copied { border-color: var(--teal); color: var(--teal); }
 
   /* FARREN */
   .farren-section {
@@ -418,17 +397,10 @@
     padding: 32px 24px; text-align: center;
     color: var(--text-dim); font-size: 13px;
   }
-  .setter-banner {
-    background: var(--yellow); color: #0a0e10;
-    text-align: center; padding: 8px 16px;
-    font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-  }
-  body:not(.setter-mode) .setter-label { display: none; }
 </style>
 </head>
 <body>
 
-<div class="setter-banner setter-only">Setter Mode active. Closing tools and on-call offers visible. Prospects see this URL without setter mode.</div>
 
 <header class="top">
   <div class="top-inner">
@@ -444,7 +416,6 @@
       <a href="#labs" data-section="labs">Labs</a>
       <a href="#farren" data-section="farren">Meet Farren</a>
       <a href="#faq" data-section="faq">FAQ</a>
-      <a href="#close" data-section="close" class="setter-only" style="background: var(--yellow); color: #0a0e10;">Close</a>
     </nav>
   </div>
 </header>
@@ -485,7 +456,7 @@
   <div class="pain-list">
     <div class="pain-item">Guessing with supplements, diets, and protocols. Spending money and time spinning your wheels.</div>
     <div class="pain-item">Doctors prescribing meds without solving the root cause or tracking biofeedback. Just chasing lab numbers while you feel like crap.</div>
-    <div class="pain-item">Cookie-cutter coaching that gives surface-level results that fall apart the moment the protocol ends.</div>
+    <div class="pain-item">Generic coaching that gives surface-level results that fall apart the moment the protocol ends.</div>
     <div class="pain-item">Confusion from endless contradictory online advice.</div>
     <div class="pain-item">Wasted money on random labs and biohacks.</div>
     <div class="pain-item">The fear: "what if I try again and nothing changes?"</div>
@@ -793,10 +764,6 @@
         <li>Education vault access</li>
       </ul>
 
-      <div class="on-call-offer setter-only">
-        <div class="label">On-call offer (Setter authority)</div>
-        <p class="copy"><strong>$200 off</strong> Precision Engineering. Use as a closer move when the prospect is on the fence.</p>
-      </div>
     </div>
 
     <div class="tier featured">
@@ -836,10 +803,6 @@
         <li>Everything in Precision Engineering included</li>
       </ul>
 
-      <div class="on-call-offer setter-only">
-        <div class="label">On-call offer (Setter authority)</div>
-        <p class="copy"><strong>$400 off</strong> System Dominance. Use as a closer move when the prospect is on the fence.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1243,7 +1206,6 @@
 
   <div class="faq-group" data-faq="peptides">
     <details class="faq-item"><summary>Do you work with peptides?</summary><div class="faq-answer">Yes. We have access to both prescription peptides through our medical network and to gray market sources used commonly in the bodybuilding and biohacking space. Which route is appropriate depends on your goals, your case, and your jurisdiction. Farren walks through the options on the call.</div></details>
-    <details class="faq-item setter-only"><summary>SETTER NOTE: Peptide details</summary><div class="faq-answer"><strong>Internal only.</strong> Keep peptide details out of written DMs. Acknowledge yes, we work with peptides, then move the conversation onto a sales call. Specific peptide names, sources, dosing, or pricing are call-only.</div></details>
   </div>
 
   <div class="faq-group" data-faq="supplements">
@@ -1259,109 +1221,6 @@
   </div>
 </section>
 
-<section id="close" class="setter-only">
-  <h4 class="setter-label">Setter view only</h4>
-  <h2>Closing playbook</h2>
-  <p class="lead">Run the same play every time. Money first, contract second, Farren notified third, client warmed up fourth.</p>
-
-  <div class="setter-section">
-    <h3>Step 1 — At "yes," confirm verbally</h3>
-    <ul class="checklist">
-      <li>Tier (Precision Engineering or System Dominance)</li>
-      <li>Duration (3, 6, 9, or 12 months)</li>
-      <li>Payment option (PIF or Payment Plan)</li>
-      <li>Email address spelled back and written down</li>
-    </ul>
-  </div>
-
-  <div class="setter-section">
-    <h3>On-call offer authority</h3>
-    <ul class="checklist">
-      <li><strong>Precision Engineering:</strong> $200 off</li>
-      <li><strong>System Dominance:</strong> $400 off</li>
-    </ul>
-    <p style="margin-top: 12px; font-size: 14px;">Use the offer as a closer move when the prospect is on the fence. Anything beyond these amounts requires text approval from Farren.</p>
-  </div>
-
-  <div class="setter-section">
-    <h3>Step 2 — Send Stripe link</h3>
-    <p>Pull the matching link from the Stripe Links Google Sheet (Drive). Match by tier, duration, and payment option. Send via DM, SMS, or email while still on the call. Confirm payment success live before they hang up.</p>
-    <div class="copyable" onclick="copyText(this)">Awesome, locking you in. Here is your secure payment link. Once that goes through I'll send the contract right behind it.</div>
-  </div>
-
-  <div class="setter-section">
-    <h3>Step 3 — Send DocuSign agreement</h3>
-    <p>Open DocuSign templates. Select the Wesnoski Client Service Agreement. Fill in Section 1 header (name, email, phone, country, tier, program length, payment option, total price, schedule, start date). Send for signature.</p>
-    <div class="copyable" onclick="copyText(this)">Just sent the coaching agreement to [their email] from DocuSign. Quick read, a few initials, and a final signature at the bottom. Sign it within 24 hours so we can get you into the app and rolling.</div>
-    <div class="quick-links">
-      <a href="https://apps.docusign.com/send/templates" target="_blank" class="quick-link">DocuSign templates <span class="arrow">↗</span></a>
-    </div>
-  </div>
-
-  <div class="setter-section">
-    <h3>Step 4 — Text Farren the new client details</h3>
-    <p>Send to Farren at <strong>(604) 360-4066</strong> in this exact format:</p>
-    <div class="copyable" onclick="copyText(this)">NEW CLIENT
-First Name: [first]
-Last Name: [last]
-Email: [email]
-Phone: [phone with country code]
-DOB: [MM/DD/YYYY]
-Tier: [Precision Engineering or System Dominance]
-Duration: [3 / 6 / 9 / 12 months]
-Payment: [PIF or Payment Plan]
-Stripe: PAID
-DocuSign: SENT (or SIGNED if already returned)</div>
-  </div>
-
-  <div class="setter-section">
-    <h3>Step 5 — Send the welcome text to client</h3>
-    <p>Warms them up immediately and starts intake. SMS preferred, DM if SMS not collected.</p>
-    <div class="copyable" onclick="copyText(this)">Welcome to Wesnoski Coaching, happy to have you onboard! Please send all lab work taken in the past 12 months to farren@wesnoskicoaching.com and start filling out the intake form (onboard.wesnoskicoaching.com). You will receive emails to join the Wesnoski Coaching App shortly!</div>
-  </div>
-
-  <div class="setter-section">
-    <h3>End-of-call checklist</h3>
-    <ul class="checklist">
-      <li>Tier, duration, and payment option confirmed verbally</li>
-      <li>Email spelled back and recorded</li>
-      <li>Stripe payment link sent</li>
-      <li>Stripe payment confirmed (success notification visible)</li>
-      <li>DocuSign sent with header block filled in</li>
-      <li>Text sent to Farren with full client details</li>
-      <li>Welcome text sent to client (SMS or DM)</li>
-      <li>Close logged in performance tracker</li>
-    </ul>
-  </div>
-
-  <div class="setter-section">
-    <h3>Edge cases</h3>
-    <p><strong>Card declines on Stripe:</strong> Try second card. If PIF declines, offer payment-plan link as fallback. If both fail, schedule a follow-up in 24 to 48 hours. Deal is not closed until Stripe says it is.</p>
-    <p><strong>Wants to read contract first:</strong> Send DocuSign first, then Stripe link after they confirm they have read it. Stay on the line until Stripe lands.</p>
-    <p><strong>Asks for a discount beyond on-call offer:</strong> $200 off PE and $400 off SD are within authority. Beyond that, text Farren first and wait for written approval.</p>
-    <p><strong>"I need to think about it":</strong> Do not send links. Book a specific follow-up time on the call. Send the discover.wesnoskicoaching.com URL as the leave-behind.</p>
-    <p><strong>Day 2 nudge if DocuSign not signed:</strong></p>
-    <div class="copyable" onclick="copyText(this)">Hey [first name], just nudging you on the coaching agreement, quick sign so we can pull you into the app and start labs. Let me know if you hit any issues with DocuSign.</div>
-  </div>
-
-  <div class="setter-section">
-    <h3>When you don't know the answer</h3>
-    <p>Use one of these. Do not improvise on medical, legal, or scope-of-practice questions.</p>
-    <div class="copyable" onclick="copyText(this)">That's a great question for Coach Farren on the call. Let's get you booked.</div>
-    <div class="copyable" onclick="copyText(this)">Let me check with Farren and get back to you on that one.</div>
-    <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted);"><strong>Call-only topics:</strong> specific peptide names, sources, dosing, gray market sourcing, anything reading as medical advice, specific medication or supplement dosing, advanced panel pricing.</p>
-  </div>
-
-  <div class="setter-section">
-    <h3>Quick links</h3>
-    <div class="quick-links">
-      <a href="https://apps.docusign.com/send/templates" target="_blank" class="quick-link">DocuSign templates <span class="arrow">↗</span></a>
-      <a href="https://www.wesnoskicoaching.com" target="_blank" class="quick-link">Wesnoski website <span class="arrow">↗</span></a>
-      <a href="mailto:farren@wesnoskicoaching.com" class="quick-link">farren@wesnoskicoaching.com <span class="arrow">↗</span></a>
-      <a href="sms:+16043604066" class="quick-link">Text Farren (604) 360-4066 <span class="arrow">↗</span></a>
-    </div>
-  </div>
-</section>
 
 </main>
 
@@ -1370,10 +1229,6 @@ DocuSign: SENT (or SIGNED if already returned)</div>
 </footer>
 
 <script>
-  // SETTER MODE TOGGLE via URL param ?setter=1
-  if (new URLSearchParams(window.location.search).get('setter') === '1') {
-    document.body.classList.add('setter-mode');
-  }
 
   // ACTIVE NAV ON SCROLL
   const sections = document.querySelectorAll('main section');
@@ -1430,14 +1285,6 @@ DocuSign: SENT (or SIGNED if already returned)</div>
     });
   });
 
-  // COPYABLE TEMPLATES
-  function copyText(el) {
-    const text = el.textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      el.classList.add('copied');
-      setTimeout(() => el.classList.remove('copied'), 1200);
-    }).catch(() => {});
-  }
 </script>
 
 </body>
