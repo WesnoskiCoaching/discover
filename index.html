@@ -3,1256 +3,1172 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wesnoski Coaching | Discover</title>
-<meta name="description" content="1-on-1 biology-first coaching for hormones, peptides, and bloodwork interpretation. The MARCH Method.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>wesnoski. discover</title>
 <style>
-  :root {
-    --bg: #0a0e10;
-    --bg-card: #161b1f;
-    --bg-elev: #1d2429;
-    --border: rgba(255,255,255,0.08);
-    --border-strong: rgba(255,255,255,0.18);
-    --text: #f5f5f0;
-    --text-muted: rgba(245,245,240,0.7);
-    --text-dim: rgba(245,245,240,0.5);
-    --teal: #5dcaa5;
-    --teal-dark: #1d9e75;
-    --yellow: #f5d842;
-    --coral: #d85a30;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-  }
-  a { color: var(--teal); text-decoration: none; }
-  a:hover { color: var(--text); }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  header.top {
-    position: sticky; top: 0;
-    background: rgba(10,14,16,0.92);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-  }
-  .top-inner {
-    max-width: 1200px; margin: 0 auto;
-    padding: 14px 24px;
-    display: flex; align-items: center; gap: 24px;
-  }
-  .brand { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; flex-shrink: 0; }
-  .brand span { color: var(--teal); }
-  nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
-  nav.tabs a {
-    padding: 6px 12px; border-radius: 6px;
-    color: var(--text-muted);
-    font-size: 13px; font-weight: 500;
-    transition: all 0.15s; cursor: pointer;
-  }
-  nav.tabs a:hover { background: var(--bg-elev); color: var(--text); }
-  nav.tabs a.active { background: var(--teal); color: #0a0e10; }
+:root {
+  --bg: #0A0E10;
+  --bg-soft: #131820;
+  --teal: #14B8A6;
+  --gold: #D4A537;
+  --text: #FFFFFF;
+  --subtext: rgba(255,255,255,0.65);
+  --muted: rgba(255,255,255,0.45);
+  --border: rgba(255,255,255,0.12);
+  --border-soft: rgba(255,255,255,0.06);
+}
 
-  main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
-  section { padding: 60px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-  h1 { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
-  h2 { font-size: 36px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 24px; }
-  h3 { font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 12px; }
-  h4 {
-    font-size: 14px; font-weight: 600;
-    color: var(--teal);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: 16px;
-  }
-  p { margin-bottom: 16px; color: var(--text-muted); font-size: 17px; }
-  p.lead { font-size: 19px; color: var(--text); }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg);
+  overscroll-behavior: none;
+}
 
-  .hero { text-align: center; padding: 80px 0 60px; border-bottom: 1px solid var(--border); }
-  .hero .eyebrow {
-    color: var(--teal); font-size: 13px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 20px;
-  }
-  .hero h1 { font-size: 64px; margin-bottom: 16px; }
-  .hero .sub { font-size: 22px; color: var(--text-muted); max-width: 700px; margin: 0 auto 32px; }
-  .three-pillars { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-  .pillar {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 16px 24px;
-    font-weight: 600; color: var(--teal); letter-spacing: 0.02em;
-  }
+#app {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
 
-  .card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px; margin-bottom: 16px;
-  }
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 768px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 28px; }
-    .hero h1 { font-size: 40px; }
-    .hero .sub { font-size: 17px; }
-  }
+/* Top bar */
+.topbar {
+  position: absolute;
+  top: env(safe-area-inset-top, 16px);
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none;
+}
 
-  .pain-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
-  @media (max-width: 768px) { .pain-list { grid-template-columns: 1fr; } }
-  .pain-item {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 16px 20px;
-    color: var(--text-muted); font-size: 15px;
-  }
-  .pain-cta {
-    margin-top: 24px; padding: 16px 24px;
-    background: var(--teal); color: #0a0e10;
-    border-radius: 8px; font-weight: 700; text-align: center;
-  }
+.back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 200ms;
+}
 
-  /* MARCH expandables */
-  details.march-detail {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; cursor: pointer;
-  }
-  details.march-detail[open] { border-color: var(--teal); }
-  details.march-detail summary {
-    list-style: none; display: flex; align-items: center; gap: 16px;
-  }
-  details.march-detail summary::-webkit-details-marker { display: none; }
-  details.march-detail summary::after {
-    content: "+"; margin-left: auto;
-    color: var(--teal); font-size: 24px; font-weight: 400;
-    transition: transform 0.2s;
-  }
-  details.march-detail[open] summary::after { transform: rotate(45deg); }
-  .march-letter-large {
-    width: 48px; height: 48px;
-    background: var(--teal); color: #0a0e10;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; font-weight: 700; flex-shrink: 0;
-  }
-  .march-name { font-size: 18px; font-weight: 600; }
-  .march-tagline { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
-  .march-deep {
-    margin-top: 20px; padding-top: 20px;
-    border-top: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  @media (max-width: 768px) { .march-deep { grid-template-columns: 1fr; } }
-  .deep-block { padding: 14px 18px; background: var(--bg-elev); border-radius: 8px; }
-  .deep-block strong {
-    display: block; color: var(--teal);
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 8px; font-weight: 700;
-  }
-  .deep-block .deep-content { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+.back-btn.hidden { opacity: 0; pointer-events: none; }
 
-  /* AUDIENCE TOGGLE */
-  .audience-toggle { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-  .audience-pill {
-    background: var(--bg-card); border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 10px 20px; border-radius: 999px;
-    cursor: pointer; font-size: 14px; font-weight: 500;
-    transition: all 0.15s;
-  }
-  .audience-pill.active { background: var(--teal); color: #0a0e10; border-color: var(--teal); }
-  .audience-pill:hover:not(.active) { border-color: var(--border-strong); color: var(--text); }
-  .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
-  @media (max-width: 768px) { .roadmap-grid { grid-template-columns: 1fr; } }
-  .audience-roadmap { display: none; }
-  .audience-roadmap.active { display: grid; }
-  .day-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 24px;
-  }
-  .day-card .day {
-    color: var(--yellow); font-size: 13px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
-  }
-  .day-card h3 { margin-bottom: 8px; font-size: 18px; }
-  .day-card p { font-size: 14px; margin-bottom: 0; }
-  .roadmap-note {
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: var(--bg-elev);
-    border-left: 2px solid var(--teal);
-    border-radius: 4px;
-    font-size: 14px; color: var(--text-muted);
-  }
+.dots {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
 
-  /* TIERS + DURATION TABS */
-  .duration-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-  .duration-tab {
-    background: var(--bg-card); border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 10px 22px; border-radius: 6px;
-    cursor: pointer; font-size: 14px; font-weight: 600;
-    transition: all 0.15s;
-  }
-  .duration-tab.active { background: var(--teal); color: #0a0e10; border-color: var(--teal); }
-  .duration-tab:hover:not(.active) { border-color: var(--border-strong); color: var(--text); }
-  .tier-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
-  @media (max-width: 768px) { .tier-grid { grid-template-columns: 1fr; } }
-  .tier {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px; position: relative;
-  }
-  .tier.featured { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal); }
-  .tier-flag {
-    position: absolute; top: -12px; right: 24px;
-    background: var(--teal); color: #0a0e10;
-    font-size: 11px; font-weight: 700;
-    padding: 4px 10px; border-radius: 4px; letter-spacing: 0.05em;
-  }
-  .tier-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .tier-tag { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
-  .price-block { display: none; }
-  .price-block.active { display: block; }
-  .tier-price { font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
-  .tier-price-sub { color: var(--text-dim); font-size: 13px; margin-bottom: 8px; }
-  .tier-savings {
-    display: inline-block;
-    background: rgba(93, 202, 165, 0.12);
-    color: var(--teal);
-    font-size: 12px; font-weight: 700;
-    padding: 4px 10px; border-radius: 4px;
-    margin-bottom: 16px;
-    letter-spacing: 0.02em;
-  }
-  .tier-permonth { color: var(--text-muted); font-size: 13px; margin-bottom: 8px; }
-  .tier ul { list-style: none; padding: 0; }
-  .tier ul li {
-    padding: 8px 0; color: var(--text-muted);
-    font-size: 15px; display: flex; gap: 10px; align-items: flex-start;
-  }
-  .tier ul li::before { content: "✓"; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 200ms;
+}
 
-  /* LABS */
-  .featured-panel {
-    background: linear-gradient(180deg, rgba(93,202,165,0.08), transparent);
-    border: 1px solid var(--teal); border-radius: 12px;
-    padding: 28px; margin: 32px 0; position: relative;
-  }
-  .featured-flag {
-    position: absolute; top: -12px; left: 24px;
-    background: var(--teal); color: #0a0e10;
-    font-size: 11px; font-weight: 700;
-    padding: 4px 12px; border-radius: 4px; letter-spacing: 0.05em;
-  }
-  .featured-price {
-    font-size: 32px; font-weight: 700;
-    color: var(--yellow); margin: 8px 0 16px;
-  }
-  .featured-panel h3 { font-size: 22px; margin-bottom: 0; }
-  .featured-includes {
-    color: var(--text-muted); font-size: 14px;
-    line-height: 1.7; margin-bottom: 12px;
-  }
-  .featured-note {
-    color: var(--text-dim); font-size: 13px;
-    margin: 0; padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-  .lab-filter-pills {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin: 24px 0;
-  }
-  .lab-pill {
-    background: var(--bg-card); border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 8px 16px; border-radius: 999px;
-    cursor: pointer; font-size: 13px; font-weight: 500;
-    transition: all 0.15s;
-  }
-  .lab-pill.active { background: var(--teal); color: #0a0e10; border-color: var(--teal); }
-  .lab-pill:hover:not(.active) { border-color: var(--border-strong); color: var(--text); }
-  .lab-cards-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-  }
-  @media (max-width: 768px) { .lab-cards-grid { grid-template-columns: 1fr; } }
-  .lab-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 14px 18px;
-    display: grid; grid-template-columns: 1fr auto;
-    gap: 4px 12px; align-items: center;
-  }
-  .lab-card.hidden { display: none; }
-  .lab-card-name {
-    font-weight: 600; font-size: 14px;
-    grid-column: 1; grid-row: 1;
-  }
-  .lab-card-provider {
-    font-size: 11px; color: var(--text-dim);
-    grid-column: 1; grid-row: 2;
-    text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .lab-card-price {
-    grid-column: 2; grid-row: 1 / 3;
-    font-weight: 700; color: var(--yellow); font-size: 16px;
-  }
-  .lab-region-uk {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 24px; margin-top: 32px;
-  }
-  .lab-region-uk h3 { color: var(--teal); margin-bottom: 16px; font-size: 18px; }
-  .lab-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-  .lab-table td {
-    padding: 8px 0; font-size: 14px;
-    color: var(--text-muted); border-bottom: 1px solid var(--border);
-  }
-  .lab-table td:last-child { text-align: right; color: var(--yellow); font-weight: 600; }
-  .lab-note {
-    margin-top: 16px; padding: 12px 16px;
-    background: var(--bg-elev); border-left: 2px solid var(--teal);
-    border-radius: 4px; font-size: 14px; color: var(--text-muted);
-  }
+.dot.active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--teal);
+}
 
-  /* FAQ */
-  .faq-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-  .faq-tab {
-    background: var(--bg-card); border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 8px 16px; border-radius: 6px;
-    cursor: pointer; font-size: 14px; font-weight: 500;
-    transition: all 0.15s;
-  }
-  .faq-tab.active { background: var(--teal); color: #0a0e10; border-color: var(--teal); }
-  .faq-tab:hover:not(.active) { border-color: var(--border-strong); color: var(--text); }
-  .faq-group { display: none; }
-  .faq-group.active { display: block; }
-  details.faq-item {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 16px 20px;
-    margin-bottom: 8px; cursor: pointer;
-  }
-  details.faq-item[open] { border-color: var(--border-strong); }
-  details.faq-item summary {
-    font-weight: 600; color: var(--text);
-    list-style: none; display: flex;
-    justify-content: space-between; align-items: center; gap: 12px;
-  }
-  details.faq-item summary::-webkit-details-marker { display: none; }
-  details.faq-item summary::after {
-    content: "+"; color: var(--teal);
-    font-size: 22px; font-weight: 400;
-    transition: transform 0.2s;
-  }
-  details.faq-item[open] summary::after { transform: rotate(45deg); }
-  details.faq-item .faq-answer {
-    margin-top: 12px; color: var(--text-muted);
-    font-size: 15px; line-height: 1.6;
-  }
+/* Panels */
+.panels {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 
+.panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px 100px;
+  background: var(--bg);
+  color: var(--text);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(40px);
+  transition: opacity 280ms ease, transform 280ms ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1;
+}
 
-  /* FARREN */
-  .farren-section {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 36px;
-  }
-  .farren-section p { font-size: 17px; color: var(--text-muted); margin-bottom: 18px; }
-  .farren-section p.lead { color: var(--text); font-weight: 500; }
-  .cta-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+.panel.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 10;
+}
 
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 24px; text-align: center;
-    color: var(--text-dim); font-size: 13px;
-  }
+.panel.behind {
+  transform: translateX(-40px);
+}
+
+/* Forward CTA */
+.fwd {
+  position: absolute;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  left: 24px;
+  right: 24px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 100ms;
+  z-index: 10;
+}
+
+.fwd:active { transform: scale(0.98); }
+.fwd .arrow { font-size: 20px; }
+
+/* Panel 1: Cover */
+.cover {
+  background: linear-gradient(180deg, rgba(10,14,16,0.35) 0%, rgba(10,14,16,0.9) 75%, rgba(10,14,16,1) 100%),
+              url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/farren-hero.jpg') center/cover no-repeat,
+              var(--bg);
+  justify-content: flex-end;
+  padding-bottom: 120px;
+}
+
+.wordmark {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 20px) + 18px);
+  left: 0;
+  right: 0;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.cover-headline {
+  font-size: 36px;
+  font-weight: 200;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.cover-headline .accent { color: var(--gold); font-style: italic; font-weight: 300; }
+
+.cover-sub {
+  font-size: 15px;
+  color: var(--subtext);
+  line-height: 1.55;
+}
+
+/* Common typography */
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 200;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.body-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--subtext);
+  margin-bottom: 28px;
+  max-width: 380px;
+}
+
+/* Testimonial panels */
+.testi-caption {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 18px;
+  max-width: 340px;
+}
+
+.testi-caption strong { color: var(--gold); font-weight: 500; }
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  aspect-ratio: 9/16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 12px 40px rgba(20,184,166,0.15), 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.unmute-pill {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  color: white;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  pointer-events: none;
+}
+
+.outcome-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.chip {
+  background: rgba(20,184,166,0.12);
+  border: 1px solid rgba(20,184,166,0.25);
+  color: var(--teal);
+  font-size: 12px;
+  padding: 7px 13px;
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Path picker */
+.path-list { width: 100%; max-width: 380px; }
+
+.path-btn {
+  display: block;
+  width: 100%;
+  padding: 22px 22px;
+  background: var(--bg-soft);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+  font-family: inherit;
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.path-btn:hover {
+  border-color: var(--teal);
+  background: rgba(20,184,166,0.1);
+}
+
+/* Roadmap */
+.day-list { width: 100%; max-width: 380px; }
+
+.day-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.day-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.day-title {
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.day-body {
+  font-size: 13px;
+  color: var(--subtext);
+  line-height: 1.55;
+}
+
+/* MARCH */
+.march-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  flex: 1;
+  min-height: 360px;
+  margin-bottom: 20px;
+}
+
+.march-stage {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms;
+}
+
+.march-stage.active { opacity: 1; pointer-events: auto; }
+
+.stage-letter {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--gold);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.stage-name {
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+
+.stage-tag {
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.stage-tagline {
+  font-size: 14px;
+  color: var(--subtext);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  max-width: 320px;
+}
+
+.chips-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.tap-chip {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: white;
+  font-size: 12px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 150ms;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.tap-chip.active {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.reveal {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  min-height: 110px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.reveal ul { list-style: none; padding-left: 0; }
+.reveal li { padding: 3px 0; color: var(--subtext); }
+
+.timeline-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.timeline-bar-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 3px;
+}
+
+.stage-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.stage-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.stage-arrow:disabled { opacity: 0.3; }
+
+.stage-counter {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  min-width: 60px;
+}
+
+/* Included */
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.included-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(20,184,166,0.07);
+  border: 1px solid rgba(20,184,166,0.2);
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  text-align: center;
+}
+
+.check {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Investment */
+.duration-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.dur-btn {
+  flex: 1;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 11px 4px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: center;
+}
+
+.dur-btn.active {
+  background: var(--teal);
+  color: white;
+  border-color: var(--teal);
+}
+
+.tier-card {
+  background: var(--bg-soft);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+  text-align: center;
+  width: 100%;
+  max-width: 380px;
+}
+
+.tier-card.featured {
+  border-color: var(--teal);
+  background: linear-gradient(180deg, rgba(20,184,166,0.08) 0%, var(--bg-soft) 100%);
+}
+
+.tier-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.tier-cadence {
+  font-size: 12px;
+  color: var(--subtext);
+  margin-bottom: 10px;
+}
+
+.tier-duration {
+  font-size: 13px;
+  color: var(--subtext);
+}
+
+.tier-price {
+  font-size: 28px;
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  margin: 6px 0 2px;
+  color: var(--text);
+}
+
+.tier-price-unit {
+  font-size: 13px;
+  color: var(--subtext);
+  font-weight: 300;
+}
+
+.tier-plan {
+  font-size: 12px;
+  color: var(--subtext);
+  margin-bottom: 14px;
+}
+
+.tier-includes {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.7;
+  list-style: none;
+  text-align: center;
+}
+
+.tier-includes li::before { content: "+ "; color: var(--teal); font-weight: 600; }
+
+/* Book */
+.book-trust {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--subtext);
+  margin-bottom: 28px;
+  max-width: 380px;
+}
+
+.book-btn {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+  background: var(--teal);
+  color: white;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 18px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.faq {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+}
+
+.faq summary {
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 18px; color: var(--gold); }
+.faq[open] summary::after { content: "−"; }
+
+.faq-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--subtext);
+  margin-top: 10px;
+}
+
+.next-steps {
+  margin-top: 32px;
+  width: 100%;
+  max-width: 380px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.next-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.next-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+}
+
+.step-num {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.step-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  padding-top: 4px;
+}
+
+.hl {
+  color: var(--teal);
+  font-weight: 500;
+  word-break: break-word;
+}
 </style>
 </head>
 <body>
 
+<div id="app">
 
-<header class="top">
-  <div class="top-inner">
-    <div class="brand">wesnoski<span>.</span></div>
-    <nav class="tabs">
-      <a href="#intro" class="active" data-section="intro">Overview</a>
-      <a href="#method" data-section="method">Method</a>
-      <a href="#pain" data-section="pain">Pain</a>
-      <a href="#march" data-section="march">MARCH</a>
-      <a href="#support" data-section="support">Support</a>
-      <a href="#roadmap" data-section="roadmap">Roadmap</a>
-      <a href="#tiers" data-section="tiers">Tiers</a>
-      <a href="#labs" data-section="labs">Labs</a>
-      <a href="#farren" data-section="farren">Meet Farren</a>
-      <a href="#faq" data-section="faq">FAQ</a>
-    </nav>
+  <div class="topbar">
+    <button class="back-btn hidden" id="backBtn">←</button>
+    <div class="dots" id="dots"></div>
+    <div style="width:36px"></div>
   </div>
-</header>
 
-<main>
+  <div class="panels" id="panels">
 
-<section id="intro" class="hero">
-  <div class="eyebrow">Wesnoski Coaching</div>
-  <h1>Hormones. Bloodwork. Peptides.</h1>
-  <p class="sub">1-on-1 coaching that reads your bloodwork before building the plan. The MARCH Method for hormones, peptides, energy, and physique.</p>
-  <div class="three-pillars">
-    <div class="pillar">Biology-first</div>
-    <div class="pillar">Data-driven</div>
-    <div class="pillar">Built to hold</div>
-  </div>
-</section>
-
-<section id="method">
-  <h4>The Method</h4>
-  <h2>Powered by the MARCH Method</h2>
-  <p class="lead">A biology-first system that rebuilds your body from the inside out.</p>
-  <div class="grid-2" style="margin-top: 32px;">
-    <div class="card">
-      <h3>What we address</h3>
-      <p>The root cause of dysfunction. Hormones, gut, thyroid, recovery, energy. We read your data, find the gaps, and build the protocol around what your biology actually needs.</p>
-    </div>
-    <div class="card">
-      <h3>How we deliver</h3>
-      <p>Oversight plus precision protocols. Weekly check-ins, lab-driven adjustments, and a coach who stays in the work with you. No template plans, no copy-paste protocols.</p>
-    </div>
-  </div>
-</section>
-
-<section id="pain">
-  <h4>The Pain</h4>
-  <h2>The problems we solve</h2>
-  <p class="lead">If any of these sound familiar, the system you have been using is not built for the body you have.</p>
-  <div class="pain-list">
-    <div class="pain-item">Guessing with supplements, diets, and protocols. Spending money and time spinning your wheels.</div>
-    <div class="pain-item">Doctors prescribing meds without solving the root cause or tracking biofeedback. Just chasing lab numbers while you feel like crap.</div>
-    <div class="pain-item">Generic coaching that gives surface-level results that fall apart the moment the protocol ends.</div>
-    <div class="pain-item">Confusion from endless contradictory online advice.</div>
-    <div class="pain-item">Wasted money on random labs and biohacks.</div>
-    <div class="pain-item">The fear: "what if I try again and nothing changes?"</div>
-  </div>
-  <div class="pain-cta">These are the problems we solve.</div>
-</section>
-
-<section id="march">
-  <h4>The Framework</h4>
-  <h2>The MARCH Method</h2>
-  <p class="lead">Five stages, one sequence. Built in the order biology demands. Click any stage for what it means, what we look for, and how we know you graduate.</p>
-
-  <div style="margin-top: 32px;">
-    <details class="march-detail">
-      <summary>
-        <div class="march-letter-large">M</div>
-        <div>
-          <div class="march-name">Mitochondria</div>
-          <div class="march-tagline">Restore energy production and cellular performance</div>
-        </div>
-      </summary>
-      <div class="march-deep">
-        <div class="deep-block">
-          <strong>What it means</strong>
-          <div class="deep-content">Mitochondria are the powerhouses of every cell. When they are dysfunctional, every other system runs on fumes. Until energy production is stable, no other intervention sticks.</div>
-        </div>
-        <div class="deep-block">
-          <strong>What we look for</strong>
-          <div class="deep-content">Symptoms: wake-tired, afternoon crashes, caffeine dependence, brain fog, cold extremities. Markers: ferritin, B12, magnesium, fasting glucose, HbA1c, thyroid status, mineral panel.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Graduation criteria</strong>
-          <div class="deep-content">Stable energy across the day without caffeine. Blood glucose in optimal range. Sleep quality consistent. Resting heart rate normalizing. Morning energy on rise.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Typical phase length</strong>
-          <div class="deep-content">4 to 8 weeks depending on starting point. Athletes and lifestyle clients often move faster. Functional health cases take longer.</div>
-        </div>
+    <!-- PANEL 1: COVER -->
+    <section class="panel active cover" data-panel="1">
+      <div class="wordmark">wesnoski.</div>
+      <div class="cover-headline">
+        Your labs say<br>
+        <span class="accent">normal.</span><br>
+        You feel like garbage.<br>
+        We close that gap.
       </div>
-    </details>
-
-    <details class="march-detail">
-      <summary>
-        <div class="march-letter-large">A</div>
-        <div>
-          <div class="march-name">Absorption and Detox</div>
-          <div class="march-tagline">Optimize gut, liver, and bile flow for nutrient uptake</div>
-        </div>
-      </summary>
-      <div class="march-deep">
-        <div class="deep-block">
-          <strong>What it means</strong>
-          <div class="deep-content">Optimize gut function and detoxification pathways so the body can take in nutrients and clear waste. You cannot supplement your way out of poor absorption.</div>
-        </div>
-        <div class="deep-block">
-          <strong>What we look for</strong>
-          <div class="deep-content">Symptoms: bloating, constipation, reflux, food sensitivities, skin issues, post-meal fatigue. Markers: GI-MAP results, hormone metabolites (DUTCH), liver enzymes, bile flow markers, stomach acid signs.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Graduation criteria</strong>
-          <div class="deep-content">Daily bowel movements. No bloating. Food sensitivities reduced. Bile flow restored. GI-MAP markers normalized. Skin and energy improving as a downstream signal.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Typical phase length</strong>
-          <div class="deep-content">4 to 12 weeks. Often the longest phase. Gut healing is non-linear and requires patience.</div>
-        </div>
+      <div class="cover-sub">
+        1-on-1 functional health coaching.<br>
+        Bloodwork. Hormones. Gut. Peptides.
       </div>
-    </details>
+      <button class="fwd" data-next="2">Start <span class="arrow">→</span></button>
+    </section>
 
-    <details class="march-detail">
-      <summary>
-        <div class="march-letter-large">R</div>
-        <div>
-          <div class="march-name">Resilience</div>
-          <div class="march-tagline">Stabilize stress response, adrenals, and inflammation</div>
-        </div>
-      </summary>
-      <div class="march-deep">
-        <div class="deep-block">
-          <strong>What it means</strong>
-          <div class="deep-content">Stabilize the stress response, adrenal function, and inflammation. Get the nervous system out of survival mode so the body can rebuild.</div>
-        </div>
-        <div class="deep-block">
-          <strong>What we look for</strong>
-          <div class="deep-content">Symptoms: wired-but-tired, anxiety, 3am wakeups, high resting heart rate. Markers: cortisol patterns (DUTCH or saliva), hsCRP, inflammation panels, HRV, blood pressure trends.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Graduation criteria</strong>
-          <div class="deep-content">Cortisol rhythm normalized (high morning, low evening). HRV improving. Sleeping through the night. Baseline inflammation reduced. Stress recovery faster.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Typical phase length</strong>
-          <div class="deep-content">4 to 8 weeks. Lifestyle interventions and adaptogenic support compound quickly when M and A are already stable.</div>
-        </div>
+    <!-- PANEL 2: TESTIMONIAL 1 MELISSA -->
+    <section class="panel" data-panel="2">
+      <div class="label">Testimonial 01</div>
+      <div class="testi-caption">
+        <strong>Melissa, 46.</strong> 26 years competitive natural bodybuilding. World champion. Retired, woke up in a body she didn't recognize.
       </div>
-    </details>
-
-    <details class="march-detail">
-      <summary>
-        <div class="march-letter-large">C</div>
-        <div>
-          <div class="march-name">Cycle and Signal</div>
-          <div class="march-tagline">Repair hormones, thyroid rhythms, fertility, and neurotransmitters</div>
-        </div>
-      </summary>
-      <div class="march-deep">
-        <div class="deep-block">
-          <strong>What it means</strong>
-          <div class="deep-content">Repair hormone signaling, thyroid rhythms, fertility hormones, and neurotransmitters. This is where most coaching starts. We start here only after the foundation holds.</div>
-        </div>
-        <div class="deep-block">
-          <strong>What we look for</strong>
-          <div class="deep-content">Symptoms: PMS, mood swings, low libido, thyroid symptoms, irregular cycles, fertility concerns. Markers: full thyroid panel (TSH, fT3, fT4, RT3, antibodies), sex hormones, DUTCH cycle mapping, neurotransmitter panel.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Graduation criteria</strong>
-          <div class="deep-content">Cycle regularity and symptom relief (women). Libido restored. Thyroid panel optimized (not just normal). Mood stable. Fertility markers improving where applicable.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Typical phase length</strong>
-          <div class="deep-content">8 to 16 weeks. Hormone work is patient work. The body responds in cycles, not days.</div>
-        </div>
+      <div class="video-wrap" data-video>
+        <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-01-melissa-web.mp4"
+               autoplay muted loop playsinline preload="metadata"></video>
+        <div class="unmute-pill">tap for sound</div>
       </div>
-    </details>
-
-    <details class="march-detail">
-      <summary>
-        <div class="march-letter-large">H</div>
-        <div>
-          <div class="march-name">Hypertrophy and Healthspan</div>
-          <div class="march-tagline">Build lean tissue, extend vitality, and lock results long-term</div>
-        </div>
-      </summary>
-      <div class="march-deep">
-        <div class="deep-block">
-          <strong>What it means</strong>
-          <div class="deep-content">Build lean tissue, train for performance, lock in long-term healthspan. Once the foundation is stable, fat loss becomes easier and lean muscle is achievable. Most coaches start here. We finish here.</div>
-        </div>
-        <div class="deep-block">
-          <strong>What we look for</strong>
-          <div class="deep-content">Body composition (DEXA, skinfolds). Strength capacity. Recovery markers. Longevity biomarkers (ApoB, Lp(a), HbA1c). Cardiovascular fitness. Training readiness.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Graduation criteria</strong>
-          <div class="deep-content">This is the maintenance and progression phase. The goal becomes sustainability, performance, and long-term healthspan. You do not graduate from H. You stay here.</div>
-        </div>
-        <div class="deep-block">
-          <strong>Typical phase length</strong>
-          <div class="deep-content">Ongoing. This is the lifelong phase. Periodized training, nutrition, and supplementation cycles.</div>
-        </div>
+      <div class="outcome-chips">
+        <div class="chip">HRV 19 → 75</div>
+        <div class="chip">RHR 60s → 40s</div>
+        <div class="chip">Cycle returned</div>
       </div>
-    </details>
-  </div>
+      <button class="fwd" data-next="3">Continue <span class="arrow">→</span></button>
+    </section>
 
-  <div class="pain-cta" style="margin-top: 32px;">Every failed protocol skips steps. MARCH is the sequence that builds results that hold.</div>
-</section>
-
-<section id="support">
-  <h4>What is included</h4>
-  <h2>Core Support System</h2>
-  <p class="lead">Every plan includes the following, regardless of tier.</p>
-  <div class="grid-2" style="margin-top: 32px;">
-    <div class="card">
-      <h3>Full nutrition, supplementation, and training protocols</h3>
-      <p>Personalized to your phase, your labs, your biofeedback.</p>
-    </div>
-    <div class="card">
-      <h3>Full blood panel interpretation and integration</h3>
-      <p>We read the labs. You get the action steps.</p>
-    </div>
-    <div class="card">
-      <h3>Live office hours (2x per month)</h3>
-      <p>Live troubleshooting with the coaching team.</p>
-    </div>
-    <div class="card">
-      <h3>Wesnoski Community Chat</h3>
-      <p>Active community of clients and coaches working through their own protocols.</p>
-    </div>
-    <div class="card">
-      <h3>Wesnoski Coaching App access</h3>
-      <p>Your protocols, check-ins, and resources in one place.</p>
-    </div>
-    <div class="card">
-      <h3>Wesnoski Resources</h3>
-      <p>Education vault explaining the why behind your protocols.</p>
-    </div>
-  </div>
-</section>
-
-<section id="roadmap">
-  <h4>What to expect</h4>
-  <h2>Your roadmap depends on your goal</h2>
-  <p class="lead">Pick what brought you here. The MARCH Method runs in every case. The visible markers along the way differ.</p>
-
-  <div class="audience-toggle" id="audience-toggle">
-    <div class="audience-pill active" data-audience="lifestyle">Lifestyle and energy</div>
-    <div class="audience-pill" data-audience="performance">Performance and bodybuilding</div>
-    <div class="audience-pill" data-audience="functional">Functional health and recovery</div>
-  </div>
-
-  <div class="audience-roadmap roadmap-grid active" data-audience="lifestyle">
-    <div class="day-card">
-      <div class="day">Day 30</div>
-      <h3>Foundation locks in</h3>
-      <p>Energy stabilizes. Sleep improves. Cravings drop. Daily habits start running on autopilot. Visible body change begins.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 60</div>
-      <h3>Body composition shifts</h3>
-      <p>Weight moves the right direction (up or down depending on your goal). Strength climbs. The plan is fitting your life instead of fighting it.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 90</div>
-      <h3>New baseline</h3>
-      <p>Sustainable rhythm locked. The new baseline becomes the baseline. No rebound. You can hold this without thinking about it.</p>
-    </div>
-  </div>
-
-  <div class="audience-roadmap roadmap-grid" data-audience="performance">
-    <div class="day-card">
-      <div class="day">Day 30</div>
-      <h3>Foundation work</h3>
-      <p>Mitochondrial repair. Gut prep. Hormonal baseline established. Training volume titrates to recovery capacity. No chasing a peak yet.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 60</div>
-      <h3>Performance window opens</h3>
-      <p>Strength climbing. Recovery improving. Body composition shifting. Training intensity ramps. Sleep and digestion supporting the load.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 90</div>
-      <h3>Phase locks in</h3>
-      <p>Stage-readiness or off-season protocol mapped. Long-term training and nutrition periodization in place. Lean tissue trending up, body comp on target.</p>
-    </div>
-  </div>
-
-  <div class="audience-roadmap roadmap-grid" data-audience="functional">
-    <div class="day-card">
-      <div class="day">Day 30</div>
-      <h3>Symptom triage</h3>
-      <p>Sleep, digestion, and energy stabilize. Stress response calms. First lab review and protocol adjustment. The biggest day-to-day pains start lifting.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 60</div>
-      <h3>Root cause work intensifies</h3>
-      <p>Cortisol rhythm normalizes. Gut healing visible. Hormones start moving in the right direction. Symptom relief deepens.</p>
-    </div>
-    <div class="day-card">
-      <div class="day">Day 90</div>
-      <h3>Foundation holds</h3>
-      <p>Symptoms reduced significantly. Lab markers trending. The plan is working AND sustainable. No flare rebound, no protocol crash.</p>
-    </div>
-  </div>
-
-  <div class="roadmap-note">These are typical trajectories. Your case is yours. Some of these markers move faster, some take longer. Real data, real biofeedback, real adjustments.</div>
-</section>
-
-<section id="tiers">
-  <h4>Tier comparison</h4>
-  <h2>Pick the level of access</h2>
-  <p class="lead">Both tiers run the MARCH Method. The difference is touchpoint cadence and direct access to Coach Farren. Programs longer than 3 months get deeper protocol periodization and lower per-month cost.</p>
-
-  <div class="duration-tabs" id="duration-toggle">
-    <div class="duration-tab active" data-duration="3">3 months</div>
-    <div class="duration-tab" data-duration="6">6 months</div>
-    <div class="duration-tab" data-duration="9">9 months</div>
-    <div class="duration-tab" data-duration="12">12 months</div>
-  </div>
-
-  <div class="tier-grid">
-    <div class="tier">
-      <div class="tier-name">Precision Engineering</div>
-      <div class="tier-tag">Bi-weekly cadence</div>
-
-      <div class="price-block active" data-duration="3">
-        <div class="tier-price">$1,400</div>
-        <div class="tier-permonth">$467 / month</div>
-        <div class="tier-price-sub">3 months PIF · or $1,600 payment plan</div>
+    <!-- PANEL 3: PATH PICKER -->
+    <section class="panel" data-panel="3">
+      <div class="label">Step in</div>
+      <div class="h1">What's pulling you here?</div>
+      <div class="body-text">Tap the one that hits closest.</div>
+      <div class="path-list">
+        <a href="#" class="path-btn" data-path="lifestyle" onclick="window.pickPath(event, 'lifestyle')">Energy, sleep, and recovery feel off</a>
+        <a href="#" class="path-btn" data-path="performance" onclick="window.pickPath(event, 'performance')">Body comp and performance are stuck</a>
+        <a href="#" class="path-btn" data-path="functional" onclick="window.pickPath(event, 'functional')">Hormones, gut, or autoimmune are loud</a>
       </div>
-      <div class="price-block" data-duration="6">
-        <div class="tier-price">$2,500</div>
-        <div class="tier-permonth">$417 / month</div>
-        <div class="tier-price-sub">6 months PIF · or $2,900 payment plan</div>
-        <div class="tier-savings">Save $300 vs 3-month rate</div>
-      </div>
-      <div class="price-block" data-duration="9">
-        <div class="tier-price">$3,600</div>
-        <div class="tier-permonth">$400 / month</div>
-        <div class="tier-price-sub">9 months PIF · or $4,100 payment plan</div>
-        <div class="tier-savings">Save $600 vs 3-month rate</div>
-      </div>
-      <div class="price-block" data-duration="12">
-        <div class="tier-price">$4,500</div>
-        <div class="tier-permonth">$375 / month</div>
-        <div class="tier-price-sub">12 months PIF · or $5,100 payment plan</div>
-        <div class="tier-savings">Save $1,100 vs 3-month rate</div>
+    </section>
+
+    <!-- PANEL 4: ROADMAP -->
+    <section class="panel" data-panel="4">
+      <div class="label" id="roadmapLabel">Your first 90 days</div>
+      <div class="h1" id="roadmapHeading">The first 90 days</div>
+      <div class="day-list" id="roadmapCards"></div>
+      <button class="fwd" data-next="5">See how we work <span class="arrow">→</span></button>
+    </section>
+
+    <!-- PANEL 5: MARCH -->
+    <section class="panel" data-panel="5">
+      <div class="label">The sequence</div>
+      <div class="h1" style="margin-bottom:6px">Five stages.<br>In the order biology demands.</div>
+      <div class="body-text">Tap the chips on each stage. Arrows to move through.</div>
+
+      <div class="march-wrap" id="marchStages"></div>
+
+      <div class="stage-nav">
+        <button type="button" class="stage-arrow" id="stagePrev">←</button>
+        <div class="stage-counter" id="stageCounter">M of 5</div>
+        <button type="button" class="stage-arrow" id="stageNext">→</button>
       </div>
 
-      <ul>
-        <li>Biweekly check-ins</li>
-        <li>Live office hours (2x per month)</li>
-        <li>Full nutrition, supplementation, and training protocols</li>
-        <li>Full blood panel interpretation and integration</li>
-        <li>Wesnoski Community Chat and Coaching App access</li>
-        <li>Education vault access</li>
-      </ul>
+      <button class="fwd" data-next="6">Continue <span class="arrow">→</span></button>
+    </section>
 
-    </div>
-
-    <div class="tier featured">
-      <div class="tier-flag">Higher cadence</div>
-      <div class="tier-name">System Dominance</div>
-      <div class="tier-tag">Weekly cadence + monthly 1:1</div>
-
-      <div class="price-block active" data-duration="3">
-        <div class="tier-price">$2,400</div>
-        <div class="tier-permonth">$800 / month</div>
-        <div class="tier-price-sub">3 months PIF · or $2,700 payment plan</div>
+    <!-- PANEL 6: TESTIMONIAL 2 SCOTT -->
+    <section class="panel" data-panel="6">
+      <div class="label">Testimonial 02</div>
+      <div class="testi-caption">
+        <strong>Scott, 51.</strong> Hospitalized in March. 25 to 30 bowel movements in 3 days. Labs and stool samples came back "normal." Nobody had answers.
       </div>
-      <div class="price-block" data-duration="6">
-        <div class="tier-price">$4,300</div>
-        <div class="tier-permonth">$717 / month</div>
-        <div class="tier-price-sub">6 months PIF · or $4,900 payment plan</div>
-        <div class="tier-savings">Save $500 vs 3-month rate</div>
+      <div class="video-wrap" data-video>
+        <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-02-scott-web.mp4"
+               autoplay muted loop playsinline preload="metadata"></video>
+        <div class="unmute-pill">tap for sound</div>
       </div>
-      <div class="price-block" data-duration="9">
-        <div class="tier-price">$6,100</div>
-        <div class="tier-permonth">$678 / month</div>
-        <div class="tier-price-sub">9 months PIF · or $6,900 payment plan</div>
-        <div class="tier-savings">Save $1,100 vs 3-month rate</div>
+      <div class="outcome-chips">
+        <div class="chip">1-2 BMs / day</div>
+        <div class="chip">Mood back</div>
+        <div class="chip">Best in years</div>
       </div>
-      <div class="price-block" data-duration="12">
-        <div class="tier-price">$7,700</div>
-        <div class="tier-permonth">$642 / month</div>
-        <div class="tier-price-sub">12 months PIF · or $8,600 payment plan</div>
-        <div class="tier-savings">Save $1,900 vs 3-month rate</div>
+      <button class="fwd" data-next="7">Continue <span class="arrow">→</span></button>
+    </section>
+
+    <!-- PANEL 7: INCLUDED -->
+    <section class="panel" data-panel="7">
+      <div class="label">What's included</div>
+      <div class="h1">Every plan.</div>
+      <div class="included-grid">
+        <div class="included-row"><div class="check">✓</div>Bloodwork interpretation, functional lens</div>
+        <div class="included-row"><div class="check">✓</div>Personalized training, nutrition, supps</div>
+        <div class="included-row"><div class="check">✓</div>Weekly or biweekly check-ins</div>
+        <div class="included-row"><div class="check">✓</div>Live office hours, 2x per month</div>
+        <div class="included-row"><div class="check">✓</div>Coaching app and community access</div>
+        <div class="included-row"><div class="check">✓</div>Direct access to me</div>
+      </div>
+      <button class="fwd" data-next="8">See pricing <span class="arrow">→</span></button>
+    </section>
+
+    <!-- PANEL 8: INVESTMENT -->
+    <section class="panel" data-panel="8">
+      <div class="label">The investment</div>
+      <div class="h1" style="margin-bottom:14px">Two tiers. Same method.</div>
+
+      <div class="duration-tabs" id="durTabs">
+        <button type="button" class="dur-btn" data-dur="3">3 mo</button>
+        <button type="button" class="dur-btn active" data-dur="6">6 mo</button>
+        <button type="button" class="dur-btn" data-dur="9">9 mo</button>
+        <button type="button" class="dur-btn" data-dur="12">12 mo</button>
       </div>
 
-      <ul>
-        <li>Weekly check-ins (2x the touchpoints)</li>
-        <li>1x per month 1:1 deep-dive call (protocol review, lab interpretation, real-time adjustments)</li>
-        <li>On-demand access (direct line for clarity between calls)</li>
-        <li>Priority response time</li>
-        <li>Everything in Precision Engineering included</li>
-      </ul>
+      <div class="tier-card" id="peCard">
+        <div class="tier-name">Precision Engineering</div>
+        <div class="tier-cadence">Bi-weekly check-ins</div>
+        <div class="tier-duration"><span id="peDur">6 months</span></div>
+        <div class="tier-price"><span id="pePif">$2,500</span> <span class="tier-price-unit">PIF</span></div>
+        <div class="tier-plan">or <span id="pePlan">$2,900</span> payment plan</div>
+        <ul class="tier-includes">
+          <li>Bi-weekly check-ins</li>
+          <li>Live office hours</li>
+          <li>Bloodwork interpretation</li>
+        </ul>
+      </div>
 
-    </div>
-  </div>
-</section>
+      <div class="tier-card featured" id="sdCard">
+        <div class="tier-name">System Dominance</div>
+        <div class="tier-cadence">Weekly + monthly 1:1 deep-dive</div>
+        <div class="tier-duration"><span id="sdDur">6 months</span></div>
+        <div class="tier-price"><span id="sdPif">$4,300</span> <span class="tier-price-unit">PIF</span></div>
+        <div class="tier-plan">or <span id="sdPlan">$4,900</span> payment plan</div>
+        <ul class="tier-includes">
+          <li>Weekly check-ins (2x cadence)</li>
+          <li>Monthly 1:1 deep-dive call</li>
+          <li>On-demand access between calls</li>
+          <li>Everything in Precision Engineering</li>
+        </ul>
+      </div>
 
-<section id="labs">
-  <h4>Lab testing</h4>
-  <h2>Lab Testing and Process</h2>
-  <p class="lead">Labs are data. Data removes guessing. Every plan includes bloodwork interpretation and integration. Labs are ordered separately based on your region.</p>
+      <button class="fwd" data-next="9">Book your call <span class="arrow">→</span></button>
+    </section>
 
-  <div class="featured-panel">
-    <div class="featured-flag">Most popular starting panel</div>
-    <h3>Wellness Check — Comprehensive</h3>
-    <div class="featured-price">$309</div>
-    <p class="featured-includes"><strong style="color: var(--text);">Includes:</strong> CMP, CBC, GGT, full lipid panel (with VLDL, HDL ratios, CHD risk), Insulin, CRP, HbA1c, Vitamin D, Cortisol, DHEA, SHBG, Progesterone, Estradiol E2, FSH, LH, Free Test, Total Test, TSH, Free T4, Free T3, RT3, TPO.</p>
-    <p class="featured-note">Drawn at LabCorp via 3D Wellness. We handle routing. You show up for the draw.</p>
-  </div>
+    <!-- PANEL 9: BOOK -->
+    <section class="panel" data-panel="9">
+      <div class="label">Book your call</div>
+      <div class="h1">30 minutes.<br>No pressure.<br>One conversation.</div>
+      <div class="book-trust">
+        Every call is with me. You leave clearer about what is actually driving this, even if today is not the day.
+      </div>
 
-  <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--teal); font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em;">United States — Full menu (filter by category)</h3>
+      <a href="https://calendly.com/wesnoskicoaching/client-1-1-meeting" target="_blank" rel="noopener" class="book-btn" id="bookBtn">Open my calendar →</a>
 
-  <div class="lab-filter-pills">
-    <div class="lab-pill active" data-category="all">All panels</div>
-    <div class="lab-pill" data-category="hormone">Hormone</div>
-    <div class="lab-pill" data-category="gut">Gut</div>
-    <div class="lab-pill" data-category="cortisol">Cortisol</div>
-    <div class="lab-pill" data-category="thyroid">Thyroid</div>
-    <div class="lab-pill" data-category="neuro">Neuro</div>
-    <div class="lab-pill" data-category="insulin">Insulin and Blood Sugar</div>
-    <div class="lab-pill" data-category="inflammation">Inflammation</div>
-    <div class="lab-pill" data-category="nutrient">Vitamin and Mineral</div>
-    <div class="lab-pill" data-category="detox">Detox and Genes</div>
-    <div class="lab-pill" data-category="cardio">Cardiometabolic</div>
-  </div>
+      <details class="faq">
+        <summary>Is this for me?</summary>
+        <div class="faq-body">
+          If you have been cycling through protocols that do not hold, if your labs read "normal" but you feel off, or if you spent months going backwards on someone else's plan, the call is for you. If you are pregnant, in active psychiatric crisis, or in active cancer treatment, the right next step is your physician, not a coach.
+        </div>
+      </details>
 
-  <div class="lab-cards-grid">
+      <details class="faq">
+        <summary>Is Farren a doctor?</summary>
+        <div class="faq-body">
+          No. I am a certified functional health coach (NASM, AFAA Level 1). I do not diagnose, treat, or cure disease. I read your data, build the protocol around your biology, and work alongside your physician where one is in play.
+        </div>
+      </details>
 
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">DUTCH Complete</div>
-      <div class="lab-card-provider">Precision Analytical</div>
-      <div class="lab-card-price">$400.55</div>
-    </div>
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">DUTCH Sex Hormone Only</div>
-      <div class="lab-card-provider">Precision Analytical</div>
-      <div class="lab-card-price">$280.55</div>
-    </div>
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">Sex Hormones Male — Basic</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$178</div>
-    </div>
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">Sex Hormones Male — Advanced</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$253</div>
-    </div>
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">Sex Hormones Female — Basic</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$190</div>
-    </div>
-    <div class="lab-card" data-category="hormone">
-      <div class="lab-card-name">Sex Hormones Female — Advanced</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$267</div>
-    </div>
-
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">GI-MAP + Zonulin</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$495.21</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">GI-MAP Add-On: Antibiotic Resistance Genes</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$148.93</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">GI-MAP Add-On: StoolOMX</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$189.93</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">CytoDX Cytokine Response Profile</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$342.45</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">IgE Allergy Explorer</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$263.73</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">Organic Acids</div>
-      <div class="lab-card-provider">Diagnostic Solutions</div>
-      <div class="lab-card-price">$288.33</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">GI Effects Comprehensive Stool Profile</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$539.55</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">SIBO 3-Hour Breath Test</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$325.55</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">Organix Comprehensive</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$359.55</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">Organic Acids Test (OAT) — Urine</div>
-      <div class="lab-card-provider">Mosaic Diagnostic</div>
-      <div class="lab-card-price">$370.55</div>
-    </div>
-    <div class="lab-card" data-category="gut">
-      <div class="lab-card-name">GI Wellness — Basic Serum</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$227</div>
-    </div>
-
-    <div class="lab-card" data-category="cortisol">
-      <div class="lab-card-name">Diurnal Cortisol</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$185.55</div>
-    </div>
-    <div class="lab-card" data-category="cortisol">
-      <div class="lab-card-name">Adrenal Stress Profile</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$205.55</div>
-    </div>
-    <div class="lab-card" data-category="cortisol">
-      <div class="lab-card-name">Cortisol Awakening Response</div>
-      <div class="lab-card-provider">Precision Analytical</div>
-      <div class="lab-card-price">$275.55</div>
-    </div>
-
-    <div class="lab-card" data-category="thyroid">
-      <div class="lab-card-name">Essential Thyroid Profile (Blood Spot)</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$225.55</div>
-    </div>
-    <div class="lab-card" data-category="thyroid">
-      <div class="lab-card-name">Comprehensive Thyroid Profile (Blood Spot + Urine)</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$314.55</div>
-    </div>
-    <div class="lab-card" data-category="thyroid">
-      <div class="lab-card-name">Thyroid Basic</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$142</div>
-    </div>
-    <div class="lab-card" data-category="thyroid">
-      <div class="lab-card-name">Thyroid Advanced</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$244</div>
-    </div>
-
-    <div class="lab-card" data-category="neuro">
-      <div class="lab-card-name">Organic Acids Test (OATs)</div>
-      <div class="lab-card-provider">Precision Analytical</div>
-      <div class="lab-card-price">$260.55</div>
-    </div>
-    <div class="lab-card" data-category="neuro">
-      <div class="lab-card-name">Neurotransmitters Advanced</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$267.55</div>
-    </div>
-    <div class="lab-card" data-category="neuro">
-      <div class="lab-card-name">Neuro-Basic Panel</div>
-      <div class="lab-card-provider">Doctors Data</div>
-      <div class="lab-card-price">$279.55</div>
-    </div>
-    <div class="lab-card" data-category="neuro">
-      <div class="lab-card-name">Neuro-Adrenal Panel</div>
-      <div class="lab-card-provider">Doctors Data</div>
-      <div class="lab-card-price">$334.55</div>
-    </div>
-
-    <div class="lab-card" data-category="insulin">
-      <div class="lab-card-name">Blood Sugar Control — Basic</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$139</div>
-    </div>
-    <div class="lab-card" data-category="insulin">
-      <div class="lab-card-name">Blood Sugar Control — Advanced</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$191</div>
-    </div>
-
-    <div class="lab-card" data-category="inflammation">
-      <div class="lab-card-name">Inflammation — Basic</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$185</div>
-    </div>
-    <div class="lab-card" data-category="inflammation">
-      <div class="lab-card-name">Inflammation — Advanced</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$304</div>
-    </div>
-
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Micronutrient Panel — Serum</div>
-      <div class="lab-card-provider">SpectraCell</div>
-      <div class="lab-card-price">$479.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">NutrEval Plasma</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$539.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">NutrEval FMV</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$539.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Iron — Comprehensive</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$126</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Toxic and Essential Elements — Urine</div>
-      <div class="lab-card-provider">ZRT</div>
-      <div class="lab-card-price">$185.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Hair Elements (HTMA-equivalent)</div>
-      <div class="lab-card-provider">Doctors Data</div>
-      <div class="lab-card-price">$179.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Toxic and Essential Elements — Urine</div>
-      <div class="lab-card-provider">Doctors Data</div>
-      <div class="lab-card-price">$219.55</div>
-    </div>
-    <div class="lab-card" data-category="nutrient">
-      <div class="lab-card-name">Hair Toxic Element Exposure Profile</div>
-      <div class="lab-card-provider">Doctors Data</div>
-      <div class="lab-card-price">$179.55</div>
-    </div>
-
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">Methylation Panel</div>
-      <div class="lab-card-provider">Genova</div>
-      <div class="lab-card-price">$335.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">MTHFR — Serum</div>
-      <div class="lab-card-provider">SpectraCell</div>
-      <div class="lab-card-price">$239.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">MTHFR</div>
-      <div class="lab-card-provider">Kashi Clinical Labs</div>
-      <div class="lab-card-price">$183.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">COMT</div>
-      <div class="lab-card-provider">Kashi Clinical Labs</div>
-      <div class="lab-card-price">$176.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">MTHFR + COMT</div>
-      <div class="lab-card-provider">Kashi Clinical Labs</div>
-      <div class="lab-card-price">$189.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">Telomere — Serum</div>
-      <div class="lab-card-provider">SpectraCell</div>
-      <div class="lab-card-price">$399.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">3x4 Blue Print — Cheek Swab</div>
-      <div class="lab-card-provider">3x4 Genetics</div>
-      <div class="lab-card-price">$399.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">Liver and Gallbladder Genetic Test</div>
-      <div class="lab-card-provider">PlexusDx</div>
-      <div class="lab-card-price">$349.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">MycoTOX Profile (Mold) — Urine</div>
-      <div class="lab-card-provider">Mosaic DX</div>
-      <div class="lab-card-price">$360.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">EnviroTOX (OAT + TOXDetect) — Urine</div>
-      <div class="lab-card-provider">Mosaic DX</div>
-      <div class="lab-card-price">$603.55</div>
-    </div>
-    <div class="lab-card" data-category="detox">
-      <div class="lab-card-name">Glyphosate Test — Urine</div>
-      <div class="lab-card-provider">Mosaic DX</div>
-      <div class="lab-card-price">$215.55</div>
-    </div>
-
-    <div class="lab-card" data-category="cardio">
-      <div class="lab-card-name">Lipoprotein Particle Profile — Serum</div>
-      <div class="lab-card-provider">SpectraCell</div>
-      <div class="lab-card-price">$259.55</div>
-    </div>
-    <div class="lab-card" data-category="cardio">
-      <div class="lab-card-name">Basic Cardiovascular Panel</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$237</div>
-    </div>
-    <div class="lab-card" data-category="cardio">
-      <div class="lab-card-name">Complete Cardiovascular Panel</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$287</div>
-    </div>
-    <div class="lab-card" data-category="cardio">
-      <div class="lab-card-name">Comprehensive Cardiovascular Panel</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$506</div>
-    </div>
-    <div class="lab-card" data-category="cardio">
-      <div class="lab-card-name">Premier Cardiovascular Panel</div>
-      <div class="lab-card-provider">Serum / LabCorp</div>
-      <div class="lab-card-price">$872</div>
-    </div>
+      <div class="next-steps">
+        <div class="next-label">If we decide to move forward</div>
+        <div class="next-step"><div class="step-num">1</div><div class="step-body">Payment processed via secure link.</div></div>
+        <div class="next-step"><div class="step-num">2</div><div class="step-body">Service agreement to review and sign, sent to your email.</div></div>
+        <div class="next-step"><div class="step-num">3</div><div class="step-body">Send your last 12 months of labs to <span class="hl">farren@wesnoskicoaching.com</span> and complete the intake form at <span class="hl">onboard.wesnoskicoaching.com</span></div></div>
+        <div class="next-step"><div class="step-num">4</div><div class="step-body">Welcome email and Wesnoski Coaching App access on your plan start date.</div></div>
+      </div>
+    </section>
 
   </div>
-
-  <div class="lab-note" style="margin-top: 20px;"><strong>Geographic notes:</strong> NY, NJ, and RI restricted (must inquire per panel). Canadian clients have limited access — select serum and select functional kits available, international shipping where supported.</div>
-
-  <div class="lab-region-uk">
-    <h3>United Kingdom and Europe</h3>
-    <table class="lab-table">
-      <tr><td>Base bloodwork</td><td>£200</td></tr>
-      <tr><td>DUTCH Complete (Adrenal + Sex Hormone)</td><td>£264</td></tr>
-      <tr><td>DUTCH Cycle Mapping + Complete</td><td>£458</td></tr>
-      <tr><td>DUTCH Plus Complete + CAR</td><td>£326</td></tr>
-      <tr><td>DUTCH Sex Hormone Metabolism</td><td>£213</td></tr>
-      <tr><td>GI360 Complete + Zonulin + H Pylori</td><td>£502</td></tr>
-      <tr><td>GI360 Essentials</td><td>£343</td></tr>
-      <tr><td>GI360 Select</td><td>£324</td></tr>
-    </table>
-  </div>
-
-  <div class="lab-note" style="margin-top: 16px;">Your coach guides you on exactly which labs are needed. No random testing. No wasted money.</div>
-</section>
-
-<section id="farren" class="farren-section-wrap">
-  <h4>Meet your coach</h4>
-  <h2>Farren Brown</h2>
-  <div class="farren-section">
-    <p class="lead">Fifteen years ago Farren started bodybuilding as part of his own recovery. It gave him a reason to rebuild from the inside out, and it forced him to learn how his body actually worked. That is where the obsession with internal health, bloodwork, and supplementation started. In bodybuilding you do not get to guess. The numbers either move or they do not.</p>
-    <p>Six years ago Farren met his wife. She is a competitive bodybuilder too, and she has Hashimoto's. Watching her navigate autoimmune disease, hormone shifts, and a medical system that kept missing the root cause is what cracked functional health open for him. He went deeper. Past the standard panels, past the textbook protocols, into peptides, hormones, gut health, and the specific ways the body fails and rebuilds.</p>
-    <p>Around the same time, fifteen years of competitive bodybuilding caught up with him. His gut was wrecked. He had to heal himself the same way he now helps clients heal: data first, root cause first, biology before behavior. That work led to his certifications through NASM and AFAA Level 1 Health Coach.</p>
-    <p>Farren built Wesnoski Coaching because the medical system, especially in Canada, is failing people. Doctors are stretched thin, prescriptions move faster than diagnoses, and the gap between "your labs are normal" and "I feel like garbage" is where most people get lost. His job is to close that gap. He reads your bloodwork, builds the protocol around your real biology, and stays in the work with you until the inside matches the outside.</p>
-    <div class="cta-bar">
-      <div class="pillar" style="font-size: 14px; padding: 8px 14px;">NASM Certified</div>
-      <div class="pillar" style="font-size: 14px; padding: 8px 14px;">AFAA Level 1 Health Coach</div>
-      <div class="pillar" style="font-size: 14px; padding: 8px 14px;">15 years bodybuilding</div>
-      <div class="pillar" style="font-size: 14px; padding: 8px 14px;">200+ clients worldwide</div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <h4>FAQ</h4>
-  <h2>Common questions</h2>
-  <p class="lead">Filter by topic. If your question is not here, ask on the call.</p>
-  <div class="faq-tabs">
-    <div class="faq-tab active" data-faq="background">Coach and Company</div>
-    <div class="faq-tab" data-faq="labs-us">Labs (US)</div>
-    <div class="faq-tab" data-faq="labs-uk">Labs (UK)</div>
-    <div class="faq-tab" data-faq="hrt">HRT and Doctors</div>
-    <div class="faq-tab" data-faq="peptides">Peptides</div>
-    <div class="faq-tab" data-faq="supplements">Supplements</div>
-    <div class="faq-tab" data-faq="scope">What is included</div>
-  </div>
-
-  <div class="faq-group active" data-faq="background">
-    <details class="faq-item"><summary>How long have you been doing this? What's Coach Farren's background?</summary><div class="faq-answer">Farren has been in the bodybuilding and functional health space for the past 10+ years. He has worked with 200+ clients internationally. He holds certifications through NASM and AFAA Level 1 Health Coach. Coaching philosophy is biology-first, root cause, and built around the MARCH Method (Mitochondria, Absorption and Detox, Resilience, Cycle and Signal, Hypertrophy and Healthspan).</div></details>
-    <details class="faq-item"><summary>Is Farren a doctor?</summary><div class="faq-answer">No. Farren is a certified functional health coach, not a licensed physician. We do not diagnose, treat, or cure disease. We provide education, biofeedback tracking, lab interpretation through a functional lens, and lifestyle, nutrition, training, and supplementation strategy. For anything outside coaching scope, we either work with the client's existing physician or connect them with a doctor or HRT clinic in our network.</div></details>
-    <details class="faq-item"><summary>How do you work with people who already have a doctor or specialist?</summary><div class="faq-answer">We work alongside, not against, their existing care. Lab findings are framed as questions for their physician, not directives. We do not tell anyone to stop a medication, change a prescribed dose, or skip an appointment.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="labs-us">
-    <details class="faq-item"><summary>Can you order blood work for me in the US?</summary><div class="faq-answer">Yes. We have the ability to write requisitions for any and all blood and advanced lab work in the United States. That includes standard panels (CBC, CMP, lipid, thyroid, iron) and advanced functional panels (full hormone, methylation, GI-MAP stool, organic acids, DUTCH, food sensitivity, mold, heavy metals, ApoB, Lp(a), inflammation markers, full thyroid). You walk into a draw site (LabCorp or Quest in most cases), the requisition is waiting, you draw, results come back to us.</div></details>
-    <details class="faq-item"><summary>Do I have to use my own doctor for labs?</summary><div class="faq-answer">Not unless you want to. We can run all of it directly. If you prefer to use your own physician, that works too. Your call.</div></details>
-    <details class="faq-item"><summary>What does the lab testing cost?</summary><div class="faq-answer">Cost varies by panel. Farren reviews your case on the call and recommends the panel that actually answers your questions. Pricing is shared after that conversation. We do not push every panel on every client. Smart panels, not maximum panels.</div></details>
-    <details class="faq-item"><summary>How fast do results come back?</summary><div class="faq-answer">Standard blood panels: typically 3 to 7 business days. Advanced functional panels (DUTCH, GI-MAP, organic acids): typically 2 to 4 weeks. Once results come in, Farren does a full analysis and we map out the protocol from there.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="labs-uk">
-    <details class="faq-item"><summary>Can you order labs for me in the UK?</summary><div class="faq-answer">Yes. We are able to get requisitions for blood work and lab testing in the UK. This covers standard blood panels and advanced functional testing. Process is similar to the US: requisition is sent, you book the draw, results come back to us for analysis.</div></details>
-    <details class="faq-item"><summary>Do you work with UK clients differently than US clients?</summary><div class="faq-answer">The coaching is the same. Lab logistics differ slightly because UK panels run through different labs. Farren handles all of it.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="hrt">
-    <details class="faq-item"><summary>Do you work with HRT (testosterone, estrogen, thyroid medication)?</summary><div class="faq-answer">Yes. We work directly with doctors and HRT clinics in the United States. If you want to go that route, we connect you with a clinic in our network for prescribing and medical oversight. We handle the coaching side: dosing strategy, biofeedback, lab interpretation, lifestyle context. The clinic handles the prescription and medical management.</div></details>
-    <details class="faq-item"><summary>Can you prescribe HRT yourself?</summary><div class="faq-answer">No. Prescriptions come through a licensed physician or HRT clinic. We do the coaching work around it: lab analysis, dose strategy, biofeedback, side effect monitoring. The clinical relationship and prescribing stays with your doctor.</div></details>
-    <details class="faq-item"><summary>What if I'm already on HRT with my own clinic?</summary><div class="faq-answer">Even better. We work alongside your existing prescriber, interpret your labs in context, and build the lifestyle and supplementation strategy that supports your protocol.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="peptides">
-    <details class="faq-item"><summary>Do you work with peptides?</summary><div class="faq-answer">Yes. We have access to both prescription peptides through our medical network and to gray market sources used commonly in the bodybuilding and biohacking space. Which route is appropriate depends on your goals, your case, and your jurisdiction. Farren walks through the options on the call.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="supplements">
-    <details class="faq-item"><summary>Do I have to source my own supplements?</summary><div class="faq-answer">No. We use a Fullscript account for US-based clients. Fullscript is third-party tested, professional-grade, the highest quality on the market. Once Farren builds your supplement protocol, the order goes straight to your inbox. You make the payment, the shipment ships to your door. Zero hunting around for brands or worrying about quality.</div></details>
-    <details class="faq-item"><summary>Why Fullscript and not Amazon brands?</summary><div class="faq-answer">Two reasons. First, the supplement industry is unregulated and most consumer-grade products fail third-party purity testing. Fullscript only carries practitioner-grade brands that pass independent testing. Second, dose. Most consumer-grade supplements under-dose the active ingredient. Fullscript brands match the doses we actually need to move biofeedback and labs.</div></details>
-    <details class="faq-item"><summary>How much do supplements cost?</summary><div class="faq-answer">That depends on the protocol Farren builds for you. We do not pile on supplements. Each one has a specific job tied to your labs and biofeedback. Pricing is shared once the protocol is mapped out.</div></details>
-    <details class="faq-item"><summary>What about UK clients and supplements?</summary><div class="faq-answer">Fullscript is US-based. For UK clients, Farren provides the protocol with brand and dose recommendations and helps map them to UK-available equivalents.</div></details>
-  </div>
-
-  <div class="faq-group" data-faq="scope">
-    <details class="faq-item"><summary>What's included when I sign up?</summary><div class="faq-answer">Coaching, lab interpretation, full protocol build (training, nutrition, supplementation, lifestyle), weekly or biweekly check-ins, priority access, and direct communication with Coach Farren. Specific tier and check-in cadence depends on the program you sign into. Farren walks through tier options on the call.</div></details>
-    <details class="faq-item"><summary>What does the first 30 days look like?</summary><div class="faq-answer">Onboarding intake. Lab review (or order labs if you don't have current ones). Capacity assessment to make sure the plan density matches your real-world bandwidth. Plan build. First weekly check-in. From there it's biofeedback tracking, plan adjustments, and phase progression through the MARCH framework.</div></details>
-  </div>
-</section>
-
-
-</main>
-
-<footer>
-  <p>Wesnoski Coaching · <a href="https://www.wesnoskicoaching.com">www.wesnoskicoaching.com</a></p>
-</footer>
+</div>
 
 <script>
+(function () {
+  const PANELS_COUNT = 9;
+  let currentPanel = 1;
+  let chosenPath = 'lifestyle';
+  let currentStage = 0;
+  const STAGES = ['M', 'A', 'R', 'C', 'H'];
 
-  // ACTIVE NAV ON SCROLL
-  const sections = document.querySelectorAll('main section');
-  const navLinks = document.querySelectorAll('nav.tabs a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  sections.forEach(s => observer.observe(s));
+  // Build progress dots
+  const dotsEl = document.getElementById('dots');
+  for (let i = 1; i <= PANELS_COUNT; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.dataset.panel = i;
+    dotsEl.appendChild(d);
+  }
 
-  // FAQ TABS
-  document.querySelectorAll('.faq-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.faq;
-      document.querySelectorAll('.faq-tab').forEach(t => t.classList.toggle('active', t.dataset.faq === target));
-      document.querySelectorAll('.faq-group').forEach(g => g.classList.toggle('active', g.dataset.faq === target));
+  function goTo(n) {
+    if (n < 1 || n > PANELS_COUNT) return;
+    currentPanel = n;
+    document.querySelectorAll('.panel').forEach(p => {
+      const num = parseInt(p.dataset.panel);
+      p.classList.remove('active', 'behind');
+      if (num === n) p.classList.add('active');
+      else if (num < n) p.classList.add('behind');
     });
+    document.querySelectorAll('.dot').forEach(d => {
+      d.classList.toggle('active', parseInt(d.dataset.panel) === n);
+    });
+    document.getElementById('backBtn').classList.toggle('hidden', n === 1);
+
+    if (n === 4) renderRoadmap();
+    if (n === 5) renderStage();
+
+    document.querySelectorAll('video').forEach(v => {
+      const panel = v.closest('.panel');
+      if (panel && parseInt(panel.dataset.panel) === n) v.play().catch(() => {});
+      else v.pause();
+    });
+  }
+
+  document.getElementById('backBtn').addEventListener('click', () => goTo(currentPanel - 1));
+
+  // Forward buttons (delegated)
+  document.addEventListener('click', (e) => {
+    const fwd = e.target.closest('.fwd');
+    if (fwd && fwd.dataset.next) {
+      goTo(parseInt(fwd.dataset.next));
+    }
   });
 
-  // AUDIENCE TOGGLE (Roadmap)
-  document.querySelectorAll('.audience-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      const target = pill.dataset.audience;
-      document.querySelectorAll('.audience-pill').forEach(p => p.classList.toggle('active', p.dataset.audience === target));
-      document.querySelectorAll('.audience-roadmap').forEach(r => r.classList.toggle('active', r.dataset.audience === target));
-    });
+  // Path buttons (global fn handles event + path)
+  window.pickPath = function(e, path) {
+    if (e && e.preventDefault) e.preventDefault();
+    console.log('[pickPath]', path);
+    chosenPath = path;
+    goTo(4);
+    return false;
+  };
+
+  // Video tap to unmute (delegated)
+  document.addEventListener('click', (e) => {
+    const wrap = e.target.closest('[data-video]');
+    if (!wrap) return;
+    const v = wrap.querySelector('video');
+    v.muted = !v.muted;
+    const pill = wrap.querySelector('.unmute-pill');
+    if (pill) pill.textContent = v.muted ? 'tap for sound' : 'tap to mute';
   });
 
-  // DURATION TABS (Tiers)
-  document.querySelectorAll('.duration-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.duration;
-      document.querySelectorAll('.duration-tab').forEach(t => t.classList.toggle('active', t.dataset.duration === target));
-      document.querySelectorAll('.price-block').forEach(p => p.classList.toggle('active', p.dataset.duration === target));
-    });
-  });
+  // Roadmap
+  const ROADMAPS = {
+    lifestyle: {
+      label: 'Energy and recovery',
+      heading: 'Your first 90 days for energy and recovery',
+      days: [
+        { d: 'Day 30', t: 'Foundation locks in', b: 'Energy stabilizes. Sleep improves. Daily habits start running on their own.' },
+        { d: 'Day 60', t: 'Body comp shifts', b: 'Weight moves in the direction you want. The plan fits your life.' },
+        { d: 'Day 90', t: 'New baseline', b: 'Sustainable rhythm. The new normal becomes the actual normal. No rebound.' },
+      ]
+    },
+    performance: {
+      label: 'Performance',
+      heading: 'Your first 90 days for performance',
+      days: [
+        { d: 'Day 30', t: 'Foundation work', b: 'Mito repair. Gut prep. Hormonal baseline. Training titrates to recovery.' },
+        { d: 'Day 60', t: 'Performance window opens', b: 'Strength climbing. Recovery improving. Composition shifting.' },
+        { d: 'Day 90', t: 'Phase locks in', b: 'Stage prep or off-season periodization mapped. Lean tissue trending up.' },
+      ]
+    },
+    functional: {
+      label: 'Functional health',
+      heading: 'Your first 90 days for hormones, gut, autoimmune',
+      days: [
+        { d: 'Day 30', t: 'Symptom triage', b: 'Sleep, digestion, energy stabilize. First lab review. Biggest pains lift.' },
+        { d: 'Day 60', t: 'Root cause work', b: 'Cortisol rhythm normalizes. Gut healing visible. Hormones moving right.' },
+        { d: 'Day 90', t: 'Foundation holds', b: 'Symptoms down. Labs trending. Plan is working AND sustainable.' },
+      ]
+    }
+  };
 
-  // LAB PILLS (Filter)
-  document.querySelectorAll('.lab-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      const target = pill.dataset.category;
-      document.querySelectorAll('.lab-pill').forEach(p => p.classList.toggle('active', p.dataset.category === target));
-      document.querySelectorAll('.lab-card').forEach(c => {
-        if (target === 'all' || c.dataset.category === target) {
-          c.classList.remove('hidden');
-        } else {
-          c.classList.add('hidden');
-        }
+  function renderRoadmap() {
+    const r = ROADMAPS[chosenPath] || ROADMAPS.lifestyle;
+    document.getElementById('roadmapLabel').textContent = r.label;
+    document.getElementById('roadmapHeading').textContent = r.heading;
+    const target = document.getElementById('roadmapCards');
+    target.innerHTML = '';
+    r.days.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'day-card';
+      card.innerHTML = `<div class="day-label">${d.d}</div><div class="day-title">${d.t}</div><div class="day-body">${d.b}</div>`;
+      target.appendChild(card);
+    });
+  }
+
+  // MARCH
+  const STAGE_DATA = [
+    { letter:'M', name:'Mitochondria', tag:'Energy. The floor.', line:"If your cells can't make power, nothing else works.", symptoms:['Wake tired even after 8 hours','Coffee before you can think','2 PM crash every day'], weeks:'4 to 8 weeks', pct:40, note:'Most clients feel the floor by week 3.', exit:'Stable energy. No caffeine bridge. Then we move to Absorption.' },
+    { letter:'A', name:'Absorption and Detox', tag:'Gut, liver, bile flow.', line:'You cannot supplement your way out of poor absorption.', symptoms:['Bloating that will not quit','Food sensitivities expanding','Post-meal fatigue or reflux'], weeks:'4 to 12 weeks', pct:60, note:'Often the longest stage. Gut healing is non-linear.', exit:'Daily BMs. No bloating. Food peace. Then we move to Resilience.' },
+    { letter:'R', name:'Resilience', tag:'Stress. Cortisol. Inflammation.', line:'Get the nervous system out of survival mode so the body can rebuild.', symptoms:['3 AM wakeups, can not get back down','Wired but tired','Anxiety that was not there before'], weeks:'4 to 8 weeks', pct:40, note:'Compounds fast once M and A are stable.', exit:'Sleeping through. Cortisol settled. HRV climbing. Then we move to Cycle.' },
+    { letter:'C', name:'Cycle and Signal', tag:'Hormones. Thyroid. Fertility.', line:'Most coaches start here. We start here only after the floor holds.', symptoms:['PMS or perimenopausal weight gain','Low libido, low drive','Irregular cycles or mood swings'], weeks:'8 to 16 weeks', pct:75, note:'Hormone work is patient work. The body responds in cycles, not days.', exit:'Cycle regular. Mood stable. Libido back. Then we lock in Hypertrophy.' },
+    { letter:'H', name:'Hypertrophy and Healthspan', tag:'Build. Periodize. Hold.', line:'Most coaches start here. We finish here.', symptoms:['Plateau on the same plan for months','Slow recovery, soreness lingers','Numbers in the gym going backwards'], weeks:'Ongoing', pct:100, note:'This is the lifelong phase.', exit:'You do not graduate from H. You stay here. We refine and hold.' }
+  ];
+
+  function renderStage() {
+    const container = document.getElementById('marchStages');
+    container.innerHTML = '';
+    STAGE_DATA.forEach((s, i) => {
+      const div = document.createElement('div');
+      div.className = 'march-stage' + (i === currentStage ? ' active' : '');
+      div.innerHTML = `
+        <div class="stage-letter">${s.letter}</div>
+        <div class="stage-name">${s.name}</div>
+        <div class="stage-tag">${s.tag}</div>
+        <div class="stage-tagline">${s.line}</div>
+        <div class="chips-row">
+          <button type="button" class="tap-chip active" data-tab="symptoms">Symptoms</button>
+          <button type="button" class="tap-chip" data-tab="timeline">Timeline</button>
+          <button type="button" class="tap-chip" data-tab="exit">Exit</button>
+        </div>
+        <div class="reveal" data-reveal>
+          <ul>${s.symptoms.map(x => `<li>${x}</li>`).join('')}</ul>
+        </div>`;
+      container.appendChild(div);
+      div.querySelectorAll('.tap-chip').forEach(c => {
+        c.addEventListener('click', () => {
+          div.querySelectorAll('.tap-chip').forEach(o => o.classList.remove('active'));
+          c.classList.add('active');
+          const reveal = div.querySelector('[data-reveal]');
+          if (c.dataset.tab === 'symptoms') {
+            reveal.innerHTML = '<ul>' + s.symptoms.map(x => `<li>${x}</li>`).join('') + '</ul>';
+          } else if (c.dataset.tab === 'timeline') {
+            reveal.innerHTML = `<div style="margin-bottom:8px"><strong>${s.weeks}</strong></div>
+              <div class="timeline-bar"><div class="timeline-bar-fill" style="width:${s.pct}%"></div></div>
+              <div style="margin-top:10px; color:var(--subtext); font-size:12px">${s.note}</div>`;
+          } else {
+            reveal.innerHTML = `<strong style="color:var(--gold)">Graduation:</strong><br>${s.exit}`;
+          }
+        });
       });
     });
+    document.getElementById('stageCounter').textContent = STAGES[currentStage] + ' of 5';
+    document.getElementById('stagePrev').disabled = currentStage === 0;
+    document.getElementById('stageNext').disabled = currentStage === STAGES.length - 1;
+  }
+  document.getElementById('stagePrev').addEventListener('click', () => { if (currentStage > 0) { currentStage--; renderStage(); } });
+  document.getElementById('stageNext').addEventListener('click', () => { if (currentStage < STAGES.length - 1) { currentStage++; renderStage(); } });
+
+  // Pricing
+  const PRICING = {
+    3:  { pePif:'$1,400', pePlan:'$1,600', sdPif:'$2,400', sdPlan:'$2,700' },
+    6:  { pePif:'$2,500', pePlan:'$2,900', sdPif:'$4,300', sdPlan:'$4,900' },
+    9:  { pePif:'$3,600', pePlan:'$4,100', sdPif:'$6,100', sdPlan:'$6,900' },
+    12: { pePif:'$4,500', pePlan:'$5,100', sdPif:'$7,700', sdPlan:'$8,600' },
+  };
+  let currentDur = 6;
+  function renderPricing() {
+    const p = PRICING[currentDur];
+    document.getElementById('peDur').textContent = currentDur + ' months';
+    document.getElementById('sdDur').textContent = currentDur + ' months';
+    document.getElementById('pePif').textContent = p.pePif;
+    document.getElementById('pePlan').textContent = p.pePlan;
+    document.getElementById('sdPif').textContent = p.sdPif;
+    document.getElementById('sdPlan').textContent = p.sdPlan;
+  }
+  document.querySelectorAll('.dur-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.dur-btn').forEach(o => o.classList.remove('active'));
+      b.classList.add('active');
+      currentDur = parseInt(b.dataset.dur);
+      renderPricing();
+    });
   });
 
+  // Calendly link is now a real anchor tag, no JS handler needed.
+
+  // Swipe (excludes buttons and videos)
+  let tStartX = 0, tStartY = 0;
+  document.addEventListener('touchstart', e => {
+    tStartX = e.changedTouches[0].screenX;
+    tStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - tStartX;
+    const dy = e.changedTouches[0].screenY - tStartY;
+    if (Math.abs(dx) < 70 || Math.abs(dy) > 80) return;
+    if (e.target.closest('video, .video-wrap, .path-btn, .dur-btn, .tap-chip, .stage-arrow, button, a, summary, .faq')) return;
+    if (dx < 0) goTo(currentPanel + 1);
+    else goTo(currentPanel - 1);
+  }, { passive: true });
+
+  renderStage();
+  renderRoadmap();
+  renderPricing();
+})();
 </script>
 
 </body>
