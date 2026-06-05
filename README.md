@@ -41,3 +41,4 @@ Same URL with `?setter=1` appended. Adds the closing playbook section (Stripe re
 - Add a favicon link.
 - Track prospect engagement with a simple analytics snippet (Plausible, Fathom, or Google Analytics).
 - Add a "Book a call" button that opens Calendly inline.
+- 
