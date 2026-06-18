@@ -1,1174 +1,1041 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>wesnoski. discover</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Wesnoski Coaching · Before Our Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 :root {
-  --bg: #0A0E10;
-  --bg-soft: #131820;
-  --teal: #14B8A6;
-  --gold: #D4A537;
-  --text: #FFFFFF;
-  --subtext: rgba(255,255,255,0.65);
-  --muted: rgba(255,255,255,0.45);
-  --border: rgba(255,255,255,0.12);
-  --border-soft: rgba(255,255,255,0.06);
+  /* Terracotta palette */
+  --cream: #F5E8DA;
+  --sand: #EBD5BD;
+  --peach: #E8C5A8;
+  --terracotta: #C97B5C;
+  --copper: #B8643F;
+  --terra-deep: #8B4A2E;
+  --warm-brown: #4A2E1F;
+  --text: #3D2817;
+  --text-soft: #6B4F3E;
+  --subtext: #8B6F5C;
+  --muted: #A88B73;
+  --border: rgba(74, 46, 31, 0.12);
+  --border-strong: rgba(74, 46, 31, 0.22);
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --card-bg-strong: rgba(255, 255, 255, 0.85);
+  --dark-bg: #2A1810;
+
+  --display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--sans);
   font-weight: 300;
-  color: var(--text);
-  background: var(--bg);
-  overscroll-behavior: none;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-#app {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* SHARED */
+.section-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 18px;
+}
+.h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 4.5vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+  margin-bottom: 22px;
+  color: var(--warm-brown);
+}
+.h2 em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+.lede {
+  font-size: clamp(15px, 1.6vw, 17px);
+  color: var(--text-soft);
+  max-width: 620px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+}
+
+/* Backdrop placeholder utility */
+.backdrop-slot {
+  position: relative;
   overflow: hidden;
-  background: var(--bg);
 }
-
-/* Top bar */
-.topbar {
-  position: absolute;
-  top: env(safe-area-inset-top, 16px);
-  left: 0;
-  right: 0;
-  padding: 16px 20px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  pointer-events: none;
-}
-
-.back-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: opacity 200ms;
-}
-
-.back-btn.hidden { opacity: 0; pointer-events: none; }
-
-.dots {
-  display: flex;
-  gap: 6px;
-  flex: 1;
-  justify-content: center;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: all 200ms;
-}
-
-.dot.active {
-  width: 20px;
-  border-radius: 3px;
-  background: var(--teal);
-}
-
-/* Panels */
-.panels {
+.backdrop-img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
 }
-
-.panel {
+.backdrop-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 80px 24px 100px;
-  background: var(--bg);
-  color: var(--text);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateX(40px);
-  transition: opacity 280ms ease, transform 280ms ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   z-index: 1;
+  pointer-events: none;
+}
+.backdrop-slot > .container,
+.backdrop-slot > .inner {
+  position: relative;
+  z-index: 2;
 }
 
-.panel.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(0);
-  z-index: 10;
+/* ==== HERO ==== */
+.hero {
+  background: linear-gradient(180deg, #E8C5A8 0%, #D8A887 60%, #C97B5C 100%);
+  padding: 56px 0 88px;
+  position: relative;
+  overflow: hidden;
 }
-
-.panel.behind {
-  transform: translateX(-40px);
-}
-
-/* Forward CTA */
-.fwd {
+.hero::before {
+  content: '';
   position: absolute;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  left: 24px;
-  right: 24px;
-  height: 56px;
-  border-radius: 14px;
-  background: var(--teal);
-  color: white;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: transform 100ms;
-  z-index: 10;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 80% 20%, rgba(184, 100, 63, 0.45) 0%, transparent 55%),
+                    radial-gradient(ellipse at 15% 80%, rgba(245, 232, 218, 0.35) 0%, transparent 50%);
+  pointer-events: none;
 }
-
-.fwd:active { transform: scale(0.98); }
-.fwd .arrow { font-size: 20px; }
-
-/* Panel 1: Cover */
-.cover {
-  background: linear-gradient(180deg, rgba(10,14,16,0.35) 0%, rgba(10,14,16,0.9) 75%, rgba(10,14,16,1) 100%),
-              url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/farren-hero.jpg') center/cover no-repeat,
-              var(--bg);
-  justify-content: flex-end;
-  padding-bottom: 120px;
-}
-
-.wordmark {
-  position: absolute;
-  top: calc(env(safe-area-inset-top, 20px) + 18px);
-  left: 0;
-  right: 0;
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 0.04em;
+.hero-inner {
+  position: relative;
   text-align: center;
 }
-
-.cover-headline {
-  font-size: 36px;
-  font-weight: 200;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
+.brandbar {
+  text-align: center;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
 }
-
-.cover-headline .accent { color: var(--gold); font-style: italic; font-weight: 300; }
-
-.cover-sub {
-  font-size: 15px;
-  color: var(--subtext);
-  line-height: 1.55;
+.brandbar .wordmark {
+  font-family: var(--display);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #fff;
+  font-style: italic;
 }
-
-/* Common typography */
-.label {
+.eyebrow {
+  display: inline-block;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.2em;
-  color: var(--gold);
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  color: #fff;
+  margin-bottom: 24px;
+  padding: 7px 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: #F5E8DA;
+}
+.hero p.lede {
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 300;
 }
 
-.h1 {
-  font-size: 28px;
-  font-weight: 200;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 20px;
+/* ==== VSL ==== */
+.vsl-section { background: var(--cream); padding: 56px 0 24px; }
+.vsl-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--dark-bg);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 24px 60px rgba(74, 46, 31, 0.2), 0 0 0 1px rgba(201, 123, 92, 0.2);
 }
-
-.body-text {
-  font-size: 15px;
-  line-height: 1.55;
+.vsl-placeholder {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2A1810 0%, #4A2E1F 100%);
+  position: relative;
+}
+.vsl-placeholder::before {
+  content: '';
+  width: 84px;
+  height: 84px;
+  background: var(--terracotta);
+  border-radius: 50%;
+  box-shadow: 0 0 0 12px rgba(201, 123, 92, 0.2), 0 0 0 24px rgba(201, 123, 92, 0.1);
+}
+.vsl-placeholder::after {
+  content: '▶';
+  position: absolute;
+  font-size: 32px;
+  color: #fff;
+  margin-left: 4px;
+}
+.vsl-caption {
+  text-align: center;
+  font-size: 12px;
   color: var(--subtext);
-  margin-bottom: 28px;
-  max-width: 380px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 18px 0 0;
+  font-weight: 500;
 }
 
-/* Testimonial panels */
-.testi-caption {
-  font-size: 14px;
+/* ==== REFRAME ==== */
+.reframe {
+  padding: 96px 0;
+  text-align: center;
+  background: var(--cream);
+}
+.reframe .backdrop-overlay {
+  background: linear-gradient(180deg, rgba(245, 232, 218, 0.0) 0%, rgba(245, 232, 218, 0.85) 100%);
+}
+.reframe p {
+  font-size: clamp(15px, 1.7vw, 17px);
+  color: var(--text-soft);
+  max-width: 640px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+}
+.reframe p.signature {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--terra-deep);
+  font-size: clamp(16px, 1.8vw, 19px);
+  margin-top: 28px;
+}
+
+/* ==== PROMISE ==== */
+.promise {
+  background: linear-gradient(180deg, var(--sand) 0%, var(--peach) 100%);
+  padding: 96px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.promise .backdrop-overlay {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(232, 197, 168, 0.5) 70%);
+}
+.promise .inner { position: relative; z-index: 2; }
+.promise .h2 { color: var(--warm-brown); margin-bottom: 28px; }
+.promise p {
+  font-size: clamp(15px, 1.8vw, 17px);
+  color: var(--terra-deep);
+  max-width: 640px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+}
+
+/* ==== MARCH ==== */
+.method { padding: 96px 0; background: var(--cream); }
+.method-intro {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+}
+.method-intro p {
+  font-size: 16px;
+  color: var(--text-soft);
+  margin-top: 16px;
+  line-height: 1.7;
+}
+.phases {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.phase {
+  background: var(--card-bg-strong);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 32px 32px 108px;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+.phase .letter {
+  position: absolute;
+  left: 28px;
+  top: 32px;
+  width: 56px;
+  height: 56px;
+  background: var(--terracotta);
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+}
+.phase h3 {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--warm-brown);
+  margin-bottom: 4px;
+}
+.phase .tag {
+  font-size: 12px;
+  color: var(--copper);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.phase .mechanism {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+.phase .split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 8px;
+}
+@media (min-width: 720px) {
+  .phase .split { grid-template-columns: 1fr 1fr; gap: 18px; }
+}
+.split-block {
+  background: rgba(247, 235, 220, 0.6);
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--terracotta);
+}
+.split-block.right { border-left-color: var(--copper); }
+.split-block .split-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 8px;
+}
+.split-block.right .split-label { color: var(--terra-deep); }
+.split-block p {
+  font-size: 13.5px;
+  color: var(--text-soft);
   line-height: 1.55;
-  color: var(--text);
-  margin-bottom: 18px;
-  max-width: 340px;
+}
+.split-block p em {
+  font-style: italic;
+  color: var(--warm-brown);
 }
 
-.testi-caption strong { color: var(--gold); font-weight: 500; }
+/* ==== WHY SEQUENCE ==== */
+.sequence {
+  background: linear-gradient(180deg, var(--peach) 0%, var(--sand) 100%);
+  padding: 96px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.sequence .backdrop-overlay {
+  background: radial-gradient(ellipse at center, rgba(255, 248, 240, 0.35) 0%, rgba(232, 197, 168, 0.1) 70%);
+}
+.sequence .inner { position: relative; z-index: 2; }
+.sequence h2 { color: var(--warm-brown); }
+.sequence p {
+  font-size: clamp(15px, 1.7vw, 17px);
+  color: var(--terra-deep);
+  max-width: 660px;
+  margin: 0 auto 18px;
+  line-height: 1.7;
+}
+.sequence p.callout {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: var(--warm-brown);
+  margin-top: 28px;
+  max-width: 580px;
+}
 
+/* ==== INCLUDED ==== */
+.included {
+  background: var(--cream);
+  padding: 96px 0;
+}
+.included h2 { text-align: center; }
+.included > .container > .lede {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+.feature {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  padding: 28px 28px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.feature-name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--terra-deep);
+}
+.feature-precise {
+  font-size: 12px;
+  color: var(--copper);
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.feature-bridge {
+  font-size: 14.5px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+.feature-bridge em {
+  font-style: italic;
+  color: var(--terra-deep);
+  font-weight: 400;
+}
+
+/* Honesty callout block */
+.honesty {
+  background: rgba(201, 123, 92, 0.08);
+  border-left: 3px solid var(--copper);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 40px 0 0;
+  font-style: italic;
+  color: var(--terra-deep);
+  font-family: var(--display);
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.55;
+}
+
+/* ==== RECEIPTS ==== */
+.receipts { padding: 96px 0; background: var(--cream); }
+.receipts h2 { text-align: center; }
+.receipts > .container > .lede {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.receipts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  justify-items: center;
+}
+@media (min-width: 720px) {
+  .receipts-grid { grid-template-columns: 1fr 1fr; }
+}
+.receipt-card { width: 100%; max-width: 340px; }
+.receipt-name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--terra-deep);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.receipt-caption {
+  font-size: 14px;
+  color: var(--text-soft);
+  text-align: center;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
 .video-wrap {
   position: relative;
   width: 100%;
-  max-width: 260px;
-  margin: 0 auto;
   aspect-ratio: 9/16;
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
-  background: #000;
-  box-shadow: 0 12px 40px rgba(20,184,166,0.15), 0 4px 12px rgba(0,0,0,0.4);
+  background: var(--dark-bg);
+  box-shadow: 0 12px 32px rgba(74, 46, 31, 0.25), 0 0 0 1px var(--border);
+  cursor: pointer;
 }
-
-.video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
+.video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .unmute-pill {
   position: absolute;
-  bottom: 12px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
+  background: rgba(42, 24, 16, 0.85);
   backdrop-filter: blur(6px);
-  color: white;
+  color: #fff;
   font-size: 11px;
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: 100px;
   pointer-events: none;
+  letter-spacing: 0.5px;
 }
-
-.outcome-chips {
+.stat-row {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  margin-top: 22px;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
-
-.chip {
-  background: rgba(20,184,166,0.12);
-  border: 1px solid rgba(20,184,166,0.25);
-  color: var(--teal);
-  font-size: 12px;
-  padding: 7px 13px;
-  border-radius: 100px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-/* Path picker */
-.path-list { width: 100%; max-width: 380px; }
-
-.path-btn {
-  display: block;
-  width: 100%;
-  padding: 22px 22px;
-  background: var(--bg-soft);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: 400;
-  text-align: center;
-  color: var(--text);
-  margin-bottom: 12px;
-  cursor: pointer;
-  position: relative;
-  z-index: 5;
-  font-family: inherit;
-  text-decoration: none;
-  -webkit-appearance: none;
-  appearance: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.path-btn:hover {
-  border-color: var(--teal);
-  background: rgba(20,184,166,0.1);
-}
-
-/* Roadmap */
-.day-list { width: 100%; max-width: 380px; }
-
-.day-card {
-  background: var(--bg-soft);
-  border: 1px solid var(--border-soft);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.day-label {
+.stat-pill {
+  background: rgba(201, 123, 92, 0.15);
+  border: 1px solid rgba(201, 123, 92, 0.4);
+  color: var(--copper);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  margin-bottom: 6px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
 }
 
-.day-title {
-  font-size: 17px;
-  font-weight: 400;
-  margin-bottom: 6px;
-  color: var(--text);
-}
-
-.day-body {
-  font-size: 13px;
-  color: var(--subtext);
-  line-height: 1.55;
-}
-
-/* MARCH */
-.march-wrap {
+/* ==== EXPECT ==== */
+.expect {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+  padding: 96px 0;
   position: relative;
-  width: 100%;
-  max-width: 380px;
-  flex: 1;
-  min-height: 360px;
-  margin-bottom: 20px;
-}
-
-.march-stage {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 250ms;
-}
-
-.march-stage.active { opacity: 1; pointer-events: auto; }
-
-.stage-letter {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  background: var(--gold);
-  color: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 300;
-  margin-bottom: 16px;
-}
-
-.stage-name {
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: -0.005em;
-  margin-bottom: 4px;
-}
-
-.stage-tag {
-  font-size: 13px;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-
-.stage-tagline {
-  font-size: 14px;
-  color: var(--subtext);
-  line-height: 1.5;
-  margin-bottom: 18px;
-  max-width: 320px;
-}
-
-.chips-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-  width: 100%;
-  max-width: 320px;
-}
-
-.tap-chip {
-  flex: 1;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--border);
-  color: white;
-  font-size: 12px;
-  padding: 10px 6px;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  transition: all 150ms;
-  font-family: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.tap-chip.active {
-  background: var(--teal);
-  border-color: var(--teal);
-}
-
-.reveal {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
-  padding: 14px 16px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--text);
-  min-height: 110px;
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
-}
-
-.reveal ul { list-style: none; padding-left: 0; }
-.reveal li { padding: 3px 0; color: var(--subtext); }
-
-.timeline-bar {
-  width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
-  margin-top: 8px;
   overflow: hidden;
 }
-
-.timeline-bar-fill {
-  height: 100%;
-  background: var(--teal);
-  border-radius: 3px;
+.expect .backdrop-overlay {
+  background: radial-gradient(ellipse at 80% 20%, rgba(245, 232, 218, 0.35) 0%, transparent 60%);
 }
-
-.stage-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 8px;
-  margin-bottom: 12px;
+.expect .inner { position: relative; z-index: 2; }
+.expect h2 { text-align: center; }
+.expect > .container > .inner > .lede {
+  text-align: center;
+  margin-bottom: 48px;
 }
-
-.stage-arrow {
+.expect-grid {
+  max-width: 680px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+.expect-item {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px 24px 84px;
+  position: relative;
+  backdrop-filter: blur(6px);
+}
+.expect-item .num {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40px;
   height: 40px;
+  background: var(--terracotta);
+  color: #fff;
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid var(--border);
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.stage-arrow:disabled { opacity: 0.3; }
-
-.stage-counter {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  min-width: 60px;
-}
-
-/* Included */
-.included-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  width: 100%;
-  max-width: 380px;
-}
-
-.included-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px 16px;
-  background: rgba(20,184,166,0.07);
-  border: 1px solid rgba(20,184,166,0.2);
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--text);
-  text-align: center;
-}
-
-.check {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--teal);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-}
-
-/* Investment */
-.duration-tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 18px;
-  width: 100%;
-  max-width: 380px;
-}
-
-.dur-btn {
-  flex: 1;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 11px 4px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-  text-align: center;
-}
-
-.dur-btn.active {
-  background: var(--teal);
-  color: white;
-  border-color: var(--teal);
-}
-
-.tier-card {
-  background: var(--bg-soft);
-  border: 1.5px solid var(--border-soft);
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 12px;
-  text-align: center;
-  width: 100%;
-  max-width: 380px;
-}
-
-.tier-card.featured {
-  border-color: var(--teal);
-  background: linear-gradient(180deg, rgba(20,184,166,0.08) 0%, var(--bg-soft) 100%);
-}
-
-.tier-name {
-  font-size: 11px;
+  font-family: var(--display);
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--gold);
+  font-size: 18px;
+  font-style: italic;
+}
+.expect-item h4 {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--warm-brown);
   margin-bottom: 6px;
 }
-
-.tier-cadence {
-  font-size: 12px;
-  color: var(--subtext);
-  margin-bottom: 10px;
-}
-
-.tier-duration {
-  font-size: 13px;
-  color: var(--subtext);
-}
-
-.tier-price {
-  font-size: 28px;
-  font-weight: 200;
-  letter-spacing: -0.01em;
-  margin: 6px 0 2px;
-  color: var(--text);
-}
-
-.tier-price-unit {
-  font-size: 13px;
-  color: var(--subtext);
-  font-weight: 300;
-}
-
-.tier-plan {
-  font-size: 12px;
-  color: var(--subtext);
-  margin-bottom: 14px;
-}
-
-.tier-includes {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.7;
-  list-style: none;
-  text-align: center;
-}
-
-.tier-includes li::before { content: "+ "; color: var(--teal); font-weight: 600; }
-
-/* Book */
-.book-trust {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--subtext);
-  margin-bottom: 28px;
-  max-width: 380px;
-}
-
-.book-btn {
-  display: block;
-  width: 100%;
-  max-width: 380px;
-  padding: 20px;
-  background: var(--teal);
-  color: white;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 17px;
-  font-weight: 500;
-  text-decoration: none;
-  margin-bottom: 18px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.faq {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-top: 10px;
-  width: 100%;
-  max-width: 380px;
-  text-align: left;
-}
-
-.faq summary {
-  font-size: 14px;
-  color: white;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 400;
-}
-
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 18px; color: var(--gold); }
-.faq[open] summary::after { content: "−"; }
-
-.faq-body {
-  font-size: 13px;
+.expect-item p {
+  font-size: 14.5px;
+  color: var(--text-soft);
   line-height: 1.6;
-  color: var(--subtext);
-  margin-top: 10px;
 }
 
-.next-steps {
-  margin-top: 32px;
-  width: 100%;
-  max-width: 380px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-soft);
-}
-
-.next-label {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 18px;
+/* Permission callout */
+.permission {
+  margin: 40px auto 0;
+  max-width: 680px;
+  background: rgba(232, 197, 168, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px;
   text-align: center;
 }
-
-.next-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  text-align: left;
-  margin-bottom: 14px;
-  padding: 12px 14px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 10px;
+.permission p {
+  font-family: var(--display);
+  font-size: clamp(16px, 1.9vw, 20px);
+  font-style: italic;
+  color: var(--warm-brown);
+  line-height: 1.55;
+  margin: 0;
 }
 
-.step-num {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--teal);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 500;
+/* ==== FINAL ==== */
+.final {
+  background: linear-gradient(180deg, var(--peach) 0%, var(--terracotta) 100%);
+  padding: 120px 0 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final .backdrop-overlay {
+  background: radial-gradient(ellipse at center, rgba(255, 248, 240, 0.25) 0%, transparent 60%);
+}
+.final .inner { position: relative; z-index: 2; }
+.final .section-label { color: rgba(255, 255, 255, 0.8); }
+.final h2 { color: #fff; margin-bottom: 28px; }
+.final h2 em { color: #FFF5E8; }
+.final p {
+  max-width: 600px;
+  margin: 0 auto 24px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+.final .signoff {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-style: italic;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  padding-top: 24px;
+  margin-top: 16px;
 }
 
-.step-body {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text);
-  padding-top: 4px;
+/* Footer */
+.footer {
+  background: var(--dark-bg);
+  padding: 40px 0;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.hl {
-  color: var(--teal);
-  font-weight: 500;
-  word-break: break-word;
+@media (max-width: 720px) {
+  .hero { padding: 36px 0 64px; }
+  .reframe, .promise, .method, .sequence, .included, .receipts, .expect { padding: 64px 0; }
+  .final { padding: 88px 0 72px; }
+  .phase { padding: 24px 22px 24px 92px; }
+  .phase .letter { left: 22px; top: 24px; width: 50px; height: 50px; font-size: 24px; }
+  .expect-item { padding: 22px 22px 22px 78px; }
+  .expect-item .num { left: 20px; width: 36px; height: 36px; font-size: 16px; }
 }
 </style>
 </head>
 <body>
 
-<div id="app">
-
-  <div class="topbar">
-    <button class="back-btn hidden" id="backBtn">←</button>
-    <div class="dots" id="dots"></div>
-    <div style="width:36px"></div>
+<!-- ==== HERO ==== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="brandbar"><div class="wordmark">wesnoski coaching</div></div>
+    <div class="eyebrow">Before Our Call</div>
+    <h1>A few minutes<br>with me, <em>before</em><br>we connect.</h1>
+    <p class="lede">I want you to know who I am, what I built, and exactly what you are walking into. Watch the video below. Then take a few minutes with what follows.</p>
   </div>
+</section>
 
-  <div class="panels" id="panels">
-
-    <!-- PANEL 1: COVER -->
-    <section class="panel active cover" data-panel="1">
-      <div class="wordmark">wesnoski.</div>
-      <div class="cover-headline">
-        Your labs say<br>
-        <span class="accent">normal.</span><br>
-        You feel like garbage.<br>
-        We close that gap.
-      </div>
-      <div class="cover-sub">
-        1-on-1 functional health coaching.<br>
-        Bloodwork. Hormones. Gut. Peptides.
-      </div>
-      <button class="fwd" data-next="2">Start <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 2: TESTIMONIAL 1 MELISSA -->
-    <section class="panel" data-panel="2">
-      <div class="label">Testimonial 01</div>
-      <div class="testi-caption">
-        <strong>Melissa, 46.</strong> 26 years competitive natural bodybuilding. World champion. Retired, woke up in a body she didn't recognize.
-      </div>
-      <div class="video-wrap" data-video>
-        <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-01-melissa-web.mp4"
-               autoplay muted loop playsinline preload="metadata"></video>
-        <div class="unmute-pill">tap for sound</div>
-      </div>
-      <div class="outcome-chips">
-        <div class="chip">HRV 19 → 75</div>
-        <div class="chip">RHR 60s → 40s</div>
-        <div class="chip">Cycle returned</div>
-      </div>
-      <button class="fwd" data-next="3">Continue <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 3: PATH PICKER -->
-    <section class="panel" data-panel="3">
-      <div class="label">Step in</div>
-      <div class="h1">What's pulling you here?</div>
-      <div class="body-text">Tap the one that hits closest.</div>
-      <div class="path-list">
-        <a href="#" class="path-btn" data-path="lifestyle" onclick="window.pickPath(event, 'lifestyle')">Energy, sleep, and recovery feel off</a>
-        <a href="#" class="path-btn" data-path="performance" onclick="window.pickPath(event, 'performance')">Body comp and performance are stuck</a>
-        <a href="#" class="path-btn" data-path="functional" onclick="window.pickPath(event, 'functional')">Hormones, gut, or autoimmune are loud</a>
-      </div>
-    </section>
-
-    <!-- PANEL 4: ROADMAP -->
-    <section class="panel" data-panel="4">
-      <div class="label" id="roadmapLabel">Your first 90 days</div>
-      <div class="h1" id="roadmapHeading">The first 90 days</div>
-      <div class="day-list" id="roadmapCards"></div>
-      <button class="fwd" data-next="5">See how we work <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 5: MARCH -->
-    <section class="panel" data-panel="5">
-      <div class="label">The sequence</div>
-      <div class="h1" style="margin-bottom:6px">Five stages.<br>In the order biology demands.</div>
-      <div class="body-text">Tap the chips on each stage. Arrows to move through.</div>
-
-      <div class="march-wrap" id="marchStages"></div>
-
-      <div class="stage-nav">
-        <button type="button" class="stage-arrow" id="stagePrev">←</button>
-        <div class="stage-counter" id="stageCounter">M of 5</div>
-        <button type="button" class="stage-arrow" id="stageNext">→</button>
-      </div>
-
-      <button class="fwd" data-next="6">Continue <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 6: TESTIMONIAL 2 SCOTT -->
-    <section class="panel" data-panel="6">
-      <div class="label">Testimonial 02</div>
-      <div class="testi-caption">
-        <strong>Scott, 51.</strong> Hospitalized in March. 25 to 30 bowel movements in 3 days. Labs and stool samples came back "normal." Nobody had answers.
-      </div>
-      <div class="video-wrap" data-video>
-        <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-02-scott-web.mp4"
-               autoplay muted loop playsinline preload="metadata"></video>
-        <div class="unmute-pill">tap for sound</div>
-      </div>
-      <div class="outcome-chips">
-        <div class="chip">1-2 BMs / day</div>
-        <div class="chip">Mood back</div>
-        <div class="chip">Best in years</div>
-      </div>
-      <button class="fwd" data-next="7">Continue <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 7: INCLUDED -->
-    <section class="panel" data-panel="7">
-      <div class="label">What's included</div>
-      <div class="h1">Every plan.</div>
-      <div class="included-grid">
-        <div class="included-row"><div class="check">✓</div>Bloodwork interpretation, functional lens</div>
-        <div class="included-row"><div class="check">✓</div>Personalized training, nutrition, supps</div>
-        <div class="included-row"><div class="check">✓</div>Weekly or biweekly check-ins</div>
-        <div class="included-row"><div class="check">✓</div>Live office hours, 2x per month</div>
-        <div class="included-row"><div class="check">✓</div>Coaching app and community access</div>
-        <div class="included-row"><div class="check">✓</div>Direct access to me</div>
-      </div>
-      <button class="fwd" data-next="8">See pricing <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 8: INVESTMENT -->
-    <section class="panel" data-panel="8">
-      <div class="label">The investment</div>
-      <div class="h1" style="margin-bottom:14px">Two tiers. Same method.</div>
-
-      <div class="duration-tabs" id="durTabs">
-        <button type="button" class="dur-btn" data-dur="3">3 mo</button>
-        <button type="button" class="dur-btn active" data-dur="6">6 mo</button>
-        <button type="button" class="dur-btn" data-dur="9">9 mo</button>
-        <button type="button" class="dur-btn" data-dur="12">12 mo</button>
-      </div>
-
-      <div class="tier-card" id="peCard">
-        <div class="tier-name">Precision Engineering</div>
-        <div class="tier-cadence">Bi-weekly check-ins</div>
-        <div class="tier-duration"><span id="peDur">6 months</span></div>
-        <div class="tier-price"><span id="pePif">$2,500</span> <span class="tier-price-unit">PIF</span></div>
-        <div class="tier-plan">or <span id="pePlan">$2,900</span> payment plan</div>
-        <ul class="tier-includes">
-          <li>Bi-weekly check-ins</li>
-          <li>Live office hours</li>
-          <li>Bloodwork interpretation</li>
-        </ul>
-      </div>
-
-      <div class="tier-card featured" id="sdCard">
-        <div class="tier-name">System Dominance</div>
-        <div class="tier-cadence">Weekly + monthly 1:1 deep-dive</div>
-        <div class="tier-duration"><span id="sdDur">6 months</span></div>
-        <div class="tier-price"><span id="sdPif">$4,300</span> <span class="tier-price-unit">PIF</span></div>
-        <div class="tier-plan">or <span id="sdPlan">$4,900</span> payment plan</div>
-        <ul class="tier-includes">
-          <li>Weekly check-ins (2x cadence)</li>
-          <li>Monthly 1:1 deep-dive call</li>
-          <li>On-demand access between calls</li>
-          <li>Everything in Precision Engineering</li>
-        </ul>
-      </div>
-
-      <button class="fwd" data-next="9">Book your call <span class="arrow">→</span></button>
-    </section>
-
-    <!-- PANEL 9: BOOK -->
-    <section class="panel" data-panel="9">
-      <div class="label">Book your call</div>
-      <div class="h1">30 minutes.<br>No pressure.<br>One conversation.</div>
-      <div class="book-trust">
-        Every call is with me. You leave clearer about what is actually driving this, even if today is not the day.
-      </div>
-
-      <a href="https://info.wesnoskicoaching.com/call-booking-page" target="_blank" rel="noopener" class="book-btn" id="bookBtn">Open my calendar →</a>
-
-      <details class="faq">
-        <summary>Is this for me?</summary>
-        <div class="faq-body">
-          If you have been cycling through protocols that do not hold, if your labs read "normal" but you feel off, or if you spent months going backwards on someone else's plan, the call is for you. If you are pregnant, in active psychiatric crisis, or in active cancer treatment, the right next step is your physician, not a coach.
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary>Is Farren a doctor?</summary>
-        <div class="faq-body">
-          No. I am a certified functional health coach (NASM, AFAA Level 1). I do not diagnose, treat, or cure disease. I read your data, build the protocol around your biology, and work alongside your physician where one is in play.
-        </div>
-      </details>
-
-      <div class="next-steps">
-        <div class="next-label">If we decide to move forward</div>
-        <div class="next-step"><div class="step-num">1</div><div class="step-body">Payment processed via secure link.</div></div>
-        <div class="next-step"><div class="step-num">2</div><div class="step-body">Service agreement to review and sign, sent to your email.</div></div>
-        <div class="next-step"><div class="step-num">3</div><div class="step-body">Send your last 12 months of labs to <span class="hl">farren@wesnoskicoaching.com</span> and complete the intake form at <span class="hl">onboard.wesnoskicoaching.com</span></div></div>
-        <div class="next-step"><div class="step-num">4</div><div class="step-body">Welcome email and Wesnoski Coaching App access on your plan start date.</div></div>
-      </div>
-    </section>
-
+<!-- ==== VSL ==== -->
+<section class="vsl-section">
+  <div class="container">
+    <div class="vsl-wrap">
+      <video controls preload="metadata" playsinline style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#000; border-radius:6px;">
+        <source src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/wesnoski-vsl.mp4" type="video/mp4">
+        Your browser does not support HTML5 video. <a href="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/wesnoski-vsl.mp4">Watch the video here</a>.
+      </video>
+    </div>
+    <p class="vsl-caption">12 to 14 minutes · Please watch in full</p>
   </div>
+</section>
+
+<!-- ==== REFRAME ==== -->
+<section class="reframe backdrop-slot">
+  <!-- BACKDROP SLOT 1 — see notes below
+       AI prompt: "soft warm terracotta background, abstract floral botanical pattern, blurred copper light, ethereal, feminine, hi-res"
+       Once generated, upload to R2 and replace the line below:
+       <div class="backdrop-img" style="background-image: url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/backdrop-1.jpg');"></div> -->
+  <div class="backdrop-overlay"></div>
+  <div class="container">
+    <div class="section-label">Who I built this for</div>
+    <h2 class="h2">Most of the men and women<br>I work with arrive <em>somewhere similar.</em></h2>
+    <p>Tired in a way that sleep doesn't fix. Carrying a body that doesn't feel like theirs anymore. Told by more than one doctor that everything looks normal while everything feels off.</p>
+    <p>Hashimoto's. Perimenopause. Postpartum recovery. Autoimmune patterns. Low testosterone. Gut chaos that nobody could name. Fatigue and inflammation that don't show up clearly on any single test.</p>
+    <p>The gap between what your labs read and what your body knows is real. It is where most people get lost. And it is what I built this practice to close.</p>
+    <p class="signature">If any of that sounds like you, you are in the right place.</p>
+  </div>
+</section>
+
+<!-- ==== IDENTITY PROMISE ==== -->
+<section class="promise backdrop-slot">
+  <!-- BACKDROP SLOT 2
+       AI prompt: "warm sunrise terracotta gradient, soft draped silk texture, peach and copper tones, organic, calm, editorial, no people, hi-res"
+       Once generated: <div class="backdrop-img" style="background-image: url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/backdrop-2.jpg');"></div> -->
+  <div class="backdrop-overlay"></div>
+  <div class="container inner">
+    <div class="section-label">The Standard</div>
+    <h2 class="h2">You stop being<br>the patient.<br>You become the person<br><em>leading their own biology.</em></h2>
+    <p>Most people show up to a coach hoping someone will finally tell them what is wrong. The people I work with show up ready to take responsibility for their body, their data, and the standard they hold themselves to from here forward.</p>
+    <p>That is the shift. That is where the real change actually starts.</p>
+  </div>
+</section>
+
+<!-- ==== MARCH METHOD (expanded with symptoms + graduation per phase) ==== -->
+<section class="method">
+  <div class="container">
+    <div class="method-intro">
+      <div class="section-label">The Sequence</div>
+      <h2 class="h2">Five phases.<br>In the order <em>biology demands.</em></h2>
+      <p>Each phase has a job, a way it feels when you are in it, and a clear set of signals that tell us you are ready to move forward. Nothing skipped. Nothing rushed.</p>
+    </div>
+    <div class="phases">
+
+      <!-- M -->
+      <div class="phase">
+        <div class="letter">M</div>
+        <h3>Mitochondria</h3>
+        <div class="tag">Energy. The floor.</div>
+        <p class="mechanism">The energy floor underneath every cell in your body. If your cells cannot make power, nothing layered on top of that has fuel to actually work. We begin here.</p>
+        <div class="split">
+          <div class="split-block">
+            <div class="split-label">What this looks like</div>
+            <p>Tired after a full night's sleep. Foggy mornings. Caffeine dependence. Afternoon crash. Cold hands and feet. <em>That feeling of never being fully online.</em></p>
+          </div>
+          <div class="split-block right">
+            <div class="split-label">How we know you're ready</div>
+            <p>Morning energy stable without caffeine. Body temperature steady. Sleep deep. Recovery back. Resting heart rate dropping into a healthy floor.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A -->
+      <div class="phase">
+        <div class="letter">A</div>
+        <h3>Absorption & Detox</h3>
+        <div class="tag">Gut. Liver. Bile flow.</div>
+        <p class="mechanism">Your gut, your liver, the bile flow that clears your hormones and your toxins. You cannot supplement your way out of poor absorption. We restore this second.</p>
+        <div class="split">
+          <div class="split-block">
+            <div class="split-label">What this looks like</div>
+            <p>Bloating that does not quit. Irregular digestion. Reflux. Food sensitivities expanding. Skin breakouts. Brain fog after meals. <em>A body that does not trust food anymore.</em></p>
+          </div>
+          <div class="split-block right">
+            <div class="split-label">How we know you're ready</div>
+            <p>Clean daily bowel movements. Bloating gone. Food tolerance expanding. Skin clearing. Energy steady through meals instead of crashing after them.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- R -->
+      <div class="phase">
+        <div class="letter">R</div>
+        <h3>Resilience</h3>
+        <div class="tag">Stress. Cortisol. Inflammation.</div>
+        <p class="mechanism">Your nervous system, your cortisol rhythm, your inflammation load. Most people who arrive here have lived in survival mode for years. We let your body come out of it so it has the bandwidth to rebuild instead of just hold.</p>
+        <div class="split">
+          <div class="split-block">
+            <div class="split-label">What this looks like</div>
+            <p>Wired but tired. 3 AM wake-ups. Anxiety that was not always there. Racing heart at rest. Irritability you cannot explain. <em>A body that forgot how to relax.</em></p>
+          </div>
+          <div class="split-block right">
+            <div class="split-label">How we know you're ready</div>
+            <p>Cortisol pattern normalizing. Sleeping through the night. HRV climbing. Day-to-day stress survivable again. The nervous system no longer braced.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- C -->
+      <div class="phase">
+        <div class="letter">C</div>
+        <h3>Cycle & Signal</h3>
+        <div class="tag">Hormones. Thyroid. Fertility.</div>
+        <p class="mechanism">Hormones, thyroid, fertility, the entire endocrine system, in men and women both. This is where most other coaching tries to start. We start here only once the foundation underneath is stable, because anything we layer on a broken floor comes undone.</p>
+        <div class="split">
+          <div class="split-block">
+            <div class="split-label">What this looks like</div>
+            <p>Irregular or missing cycles. PMS that takes you out. Thyroid signal still low on medication. Low libido. Hormonal weight gain. Mood swings. Low drive in men. <em>The body sending signals it cannot finish.</em></p>
+          </div>
+          <div class="split-block right">
+            <div class="split-label">How we know you're ready</div>
+            <p>Cycle rhythm returning. Thyroid panel improving across all four markers. Mood stabilizing. Libido coming back. Hormone work landing because the floor finally holds it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- H -->
+      <div class="phase">
+        <div class="letter">H</div>
+        <h3>Healthspan & Strength</h3>
+        <div class="tag">Build. Periodize. Hold.</div>
+        <p class="mechanism">Body composition. Lean tissue. Energy. Longevity. The natural consequence of the system underneath finally working. Not the goal. The result.</p>
+        <div class="split">
+          <div class="split-block">
+            <div class="split-label">What this looks like</div>
+            <p>Recovery faster. Training enjoyable again. Body responding to load. Composition shifting without restriction. <em>The body you remember, with the wisdom you have now.</em></p>
+          </div>
+          <div class="split-block right">
+            <div class="split-label">What this phase is</div>
+            <p>The phase you stay in. We periodize training, refine nutrition, and you hold the rebuild you earned through everything underneath.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==== WHY WE SEQUENCE ==== -->
+<section class="sequence backdrop-slot">
+  <!-- BACKDROP SLOT 3
+       AI prompt: "warm earthy clay terracotta texture, ceramic surface close-up, sand and copper tones, hand-thrown organic ridges, soft natural light, hi-res"
+       Once generated: <div class="backdrop-img" style="background-image: url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/backdrop-3.jpg');"></div> -->
+  <div class="backdrop-overlay"></div>
+  <div class="container inner">
+    <div class="section-label">Why one phase at a time</div>
+    <h2 class="h2">We don't throw the<br><em>kitchen sink</em> at your body.</h2>
+    <p>Most of the people who arrive here have already been getting the kitchen sink thrown at them. A supplement here, a training plan there, hormones, peptides, meal plans, all stacked on a foundation that was never built to hold them. Almost none of it lands.</p>
+    <p>We work one phase at a time so you can actually see the wins, feel the shifts, and know the work is moving you forward. Wins along the way build the trust that sustains the long road.</p>
+    <p class="callout">"Real change is built on wins that compound, not pressure that piles up."</p>
+  </div>
+</section>
+
+<!-- ==== INCLUDED ==== -->
+<section class="included">
+  <div class="container">
+    <div class="section-label" style="text-align:center; display:block;">What you're getting</div>
+    <h2 class="h2">The Full <em>Build.</em></h2>
+    <p class="lede">Every feature exists for a reason. Here is what it actually is, and what it actually does for you.</p>
+
+    <div class="feature-grid">
+
+      <div class="feature">
+        <div class="feature-precise">The platform</div>
+        <div class="feature-name">Wesnoski Coaching App</div>
+        <p class="feature-bridge">Every protocol, every check-in, every piece of education, the community, and your direct chat with me lives in one place. <em>So you always know where to find your plan, your progress, and your coach.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Bloodwork interpretation</div>
+        <div class="feature-name">Lab Brain Doctrine</div>
+        <p class="feature-bridge">Every marker read against our in-house functional reference ranges, not standard lab "normal." <em>So you finally see what is actually upstream of how you have been feeling.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Nutrition</div>
+        <div class="feature-name">Guidance + Full Cookbooks</div>
+        <p class="feature-bridge">No calorie-counted diets. No rigid meal plans. Real nutrition guidance and full cookbooks built around your phase. <em>So eating becomes a way you take care of yourself, not a daily punishment.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Supplementation</div>
+        <div class="feature-name">OTC through HRT</div>
+        <p class="feature-bridge">From basic over-the-counter foundations to partnerships with hormone replacement therapy clinics for cases that need medical involvement. <em>So you have the right layer, not a stack catalogue.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Training & Lifestyle</div>
+        <div class="feature-name">Programmed for your phase</div>
+        <p class="feature-bridge">Training, lifestyle, and nervous system protocols. Built around how your body should be moving, sleeping, and regulating in the phase you are in. <em>So you stop fighting your biology and start working with it.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Check-ins (weekly or bi-weekly)</div>
+        <div class="feature-name">Structured Reviews</div>
+        <p class="feature-bridge">Each check-in reviews your biofeedback, tracks your phase progression, and updates your protocol where it needs to evolve. <em>So you never spend a month going down the wrong path before catching it.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">1:1 Calls with me</div>
+        <div class="feature-name">Top-tier monthly deep-dive</div>
+        <p class="feature-bridge">Included in the higher tier of support. One monthly call where we go deep into your case directly. The base tier runs through structured app-based check-ins and the community. <em>So you know exactly what level of access you are stepping into.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Direct chat between calls</div>
+        <div class="feature-name">In-app coach access</div>
+        <p class="feature-bridge">When something shifts on a Tuesday, you bring it to me Tuesday. <em>So momentum does not break while you sit alone with a question for two weeks.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Live office hours</div>
+        <div class="feature-name">Twice a month</div>
+        <p class="feature-bridge">Real-time troubleshooting alongside the rest of the coaching team. <em>So you get more angles on your case than any single check-in could deliver.</em></p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-precise">Community</div>
+        <div class="feature-name">Men and women in the work</div>
+        <p class="feature-bridge">Active community of clients running the same protocols, walking each other through the rebuild. <em>So you are never doing this alone.</em></p>
+      </div>
+
+    </div>
+
+    <div class="honesty">
+      Most of our touchpoints happen through the coaching app. I want you to know that going in, because I am not going to sell you something that does not exist. The app is where the work lives, and the relationship runs through it.
+    </div>
+  </div>
+</section>
+
+<!-- ==== RECEIPTS ==== -->
+<section class="receipts">
+  <div class="container">
+    <div class="section-label" style="text-align:center; display:block;">Receipts</div>
+    <h2 class="h2" style="text-align:center;">What this looks like<br>when it <em>actually works.</em></h2>
+    <p class="lede">Two clients. Two cases. Same method.</p>
+    <div class="receipts-grid">
+
+      <div class="receipt-card">
+        <div class="receipt-name">Melissa, 46</div>
+        <div class="receipt-caption">Perimenopause on top of decades of high-output competition. HRT was not enough. Went backwards on a previous coach for four months before finding us.</div>
+        <div class="video-wrap" data-video>
+          <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-01-melissa-web.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="unmute-pill">Tap for sound</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-pill">HRV 19 → 75</div>
+          <div class="stat-pill">RHR 60s → 40s</div>
+          <div class="stat-pill">Cycle returned</div>
+        </div>
+      </div>
+
+      <div class="receipt-card">
+        <div class="receipt-name">Scott, 51</div>
+        <div class="receipt-caption">Hospitalized in March. 25 to 30 bowel movements in 3 days. Labs came back "normal." Nobody had answers.</div>
+        <div class="video-wrap" data-video>
+          <video src="https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/receipt-02-scott-web.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="unmute-pill">Tap for sound</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-pill">1-2 BMs / day</div>
+          <div class="stat-pill">Mood back</div>
+          <div class="stat-pill">Best in years</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==== EXPECT ON CALL ==== -->
+<section class="expect backdrop-slot">
+  <!-- BACKDROP SLOT 4
+       AI prompt: "soft warm interior, sun-washed terracotta wall, linen curtain texture, peach light, intimate calm setting, no people, hi-res"
+       Once generated: <div class="backdrop-img" style="background-image: url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/backdrop-4.jpg');"></div> -->
+  <div class="backdrop-overlay"></div>
+  <div class="container inner">
+    <div class="section-label" style="text-align:center; display:block;">When we connect</div>
+    <h2 class="h2">What to expect<br>on <em>the call.</em></h2>
+    <p class="lede">A few things to know going in so you arrive ready.</p>
+
+    <div class="expect-grid">
+
+      <div class="expect-item">
+        <div class="num">1</div>
+        <h4>The call is with my team</h4>
+        <p>You will be sitting with one of my Client Success Directors. They are trained inside the same doctrine you just heard me walk through. They know the framework, the process, and our standards. Their job is to understand your case more deeply and help you figure out if this is the right next step.</p>
+      </div>
+
+      <div class="expect-item">
+        <div class="num">2</div>
+        <h4>Bloodwork is not reviewed on this call</h4>
+        <p>That conversation happens after you become a client, during your intake and the onboarding call with me directly. The call you booked is for you to be heard, and for us to make sure this is the right next step.</p>
+      </div>
+
+      <div class="expect-item">
+        <div class="num">3</div>
+        <h4>Most of the time will be about you</h4>
+        <p>Your body. Your history. What brought you here. What has not worked. There will be questions that go a little deeper than what you might be used to, not to test you, but because those questions are usually where the rebuild actually starts.</p>
+      </div>
+
+      <div class="expect-item">
+        <div class="num">4</div>
+        <h4>Come honest, not polished</h4>
+        <p>There is no script you need to bring. No perfect version of yourself to perform as. Even if the honest answer is "I don't know yet," that is a real answer and a fine place to start from.</p>
+      </div>
+
+    </div>
+
+    <div class="permission">
+      <p>However you are arriving is welcome here. Tired. Skeptical. Hopeful. Half in, half out. All of it is okay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==== FINAL ==== -->
+<section class="final backdrop-slot">
+  <!-- BACKDROP SLOT 5
+       AI prompt: "warm sunset terracotta sky, soft copper light radiating, peach gradient, ethereal, hopeful, no people, hi-res"
+       Once generated: <div class="backdrop-img" style="background-image: url('https://pub-247859007ce34c2693a2497cdce138dd.r2.dev/backdrop-5.jpg');"></div> -->
+  <div class="backdrop-overlay"></div>
+  <div class="container inner">
+    <div class="section-label">One last thing</div>
+    <h2 class="h2">The work is <em>slow.</em><br>The right work usually is.</h2>
+    <p>I am not selling you a 30-day transformation. I am offering a structured rebuild of the system underneath everything you have been carrying.</p>
+    <p>If that is the work you have been looking for, my team is ready to meet you. And once you are in, I am here to walk with you the rest of the way.</p>
+    <div class="signoff">See you soon. — Farren</div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">© Wesnoski Coaching · Confidential</div>
 </div>
 
 <script>
-(function () {
-  const PANELS_COUNT = 9;
-  let currentPanel = 1;
-  let chosenPath = 'lifestyle';
-  let currentStage = 0;
-  const STAGES = ['M', 'A', 'R', 'C', 'H'];
-
-  // Build progress dots
-  const dotsEl = document.getElementById('dots');
-  for (let i = 1; i <= PANELS_COUNT; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 1 ? ' active' : '');
-    d.dataset.panel = i;
-    dotsEl.appendChild(d);
-  }
-
-  function goTo(n) {
-    if (n < 1 || n > PANELS_COUNT) return;
-    currentPanel = n;
-    document.querySelectorAll('.panel').forEach(p => {
-      const num = parseInt(p.dataset.panel);
-      p.classList.remove('active', 'behind');
-      if (num === n) p.classList.add('active');
-      else if (num < n) p.classList.add('behind');
-    });
-    document.querySelectorAll('.dot').forEach(d => {
-      d.classList.toggle('active', parseInt(d.dataset.panel) === n);
-    });
-    document.getElementById('backBtn').classList.toggle('hidden', n === 1);
-
-    if (n === 4) renderRoadmap();
-    if (n === 5) renderStage();
-
-    document.querySelectorAll('video').forEach(v => {
-      const panel = v.closest('.panel');
-      if (panel && parseInt(panel.dataset.panel) === n) v.play().catch(() => {});
-      else v.pause();
-    });
-  }
-
-  document.getElementById('backBtn').addEventListener('click', () => goTo(currentPanel - 1));
-
-  // Forward buttons (delegated)
-  document.addEventListener('click', (e) => {
-    const fwd = e.target.closest('.fwd');
-    if (fwd && fwd.dataset.next) {
-      goTo(parseInt(fwd.dataset.next));
-    }
-  });
-
-  // Path buttons (global fn handles event + path)
-  window.pickPath = function(e, path) {
-    if (e && e.preventDefault) e.preventDefault();
-    console.log('[pickPath]', path);
-    chosenPath = path;
-    goTo(4);
-    return false;
-  };
-
-  // Video tap to unmute (delegated)
-  document.addEventListener('click', (e) => {
-    const wrap = e.target.closest('[data-video]');
-    if (!wrap) return;
-    const v = wrap.querySelector('video');
-    v.muted = !v.muted;
-    const pill = wrap.querySelector('.unmute-pill');
-    if (pill) pill.textContent = v.muted ? 'tap for sound' : 'tap to mute';
-  });
-
-  // Roadmap
-  const ROADMAPS = {
-    lifestyle: {
-      label: 'Energy and recovery',
-      heading: 'Your first 90 days for energy and recovery',
-      days: [
-        { d: 'Day 30', t: 'Foundation locks in', b: 'Energy stabilizes. Sleep improves. Daily habits start running on their own.' },
-        { d: 'Day 60', t: 'Body comp shifts', b: 'Weight moves in the direction you want. The plan fits your life.' },
-        { d: 'Day 90', t: 'New baseline', b: 'Sustainable rhythm. The new normal becomes the actual normal. No rebound.' },
-      ]
-    },
-    performance: {
-      label: 'Performance',
-      heading: 'Your first 90 days for performance',
-      days: [
-        { d: 'Day 30', t: 'Foundation work', b: 'Mito repair. Gut prep. Hormonal baseline. Training titrates to recovery.' },
-        { d: 'Day 60', t: 'Performance window opens', b: 'Strength climbing. Recovery improving. Composition shifting.' },
-        { d: 'Day 90', t: 'Phase locks in', b: 'Stage prep or off-season periodization mapped. Lean tissue trending up.' },
-      ]
-    },
-    functional: {
-      label: 'Functional health',
-      heading: 'Your first 90 days for hormones, gut, autoimmune',
-      days: [
-        { d: 'Day 30', t: 'Symptom triage', b: 'Sleep, digestion, energy stabilize. First lab review. Biggest pains lift.' },
-        { d: 'Day 60', t: 'Root cause work', b: 'Cortisol rhythm normalizes. Gut healing visible. Hormones moving right.' },
-        { d: 'Day 90', t: 'Foundation holds', b: 'Symptoms down. Labs trending. Plan is working AND sustainable.' },
-      ]
-    }
-  };
-
-  function renderRoadmap() {
-    const r = ROADMAPS[chosenPath] || ROADMAPS.lifestyle;
-    document.getElementById('roadmapLabel').textContent = r.label;
-    document.getElementById('roadmapHeading').textContent = r.heading;
-    const target = document.getElementById('roadmapCards');
-    target.innerHTML = '';
-    r.days.forEach(d => {
-      const card = document.createElement('div');
-      card.className = 'day-card';
-      card.innerHTML = `<div class="day-label">${d.d}</div><div class="day-title">${d.t}</div><div class="day-body">${d.b}</div>`;
-      target.appendChild(card);
-    });
-  }
-
-  // MARCH
-  const STAGE_DATA = [
-    { letter:'M', name:'Mitochondria', tag:'Energy. The floor.', line:"If your cells can't make power, nothing else works.", symptoms:['Wake tired even after 8 hours','Coffee before you can think','2 PM crash every day'], weeks:'4 to 8 weeks', pct:40, note:'Most clients feel the floor by week 3.', exit:'Stable energy. No caffeine bridge. Then we move to Absorption.' },
-    { letter:'A', name:'Absorption and Detox', tag:'Gut, liver, bile flow.', line:'You cannot supplement your way out of poor absorption.', symptoms:['Bloating that will not quit','Food sensitivities expanding','Post-meal fatigue or reflux'], weeks:'4 to 12 weeks', pct:60, note:'Often the longest stage. Gut healing is non-linear.', exit:'Daily BMs. No bloating. Food peace. Then we move to Resilience.' },
-    { letter:'R', name:'Resilience', tag:'Stress. Cortisol. Inflammation.', line:'Get the nervous system out of survival mode so the body can rebuild.', symptoms:['3 AM wakeups, can not get back down','Wired but tired','Anxiety that was not there before'], weeks:'4 to 8 weeks', pct:40, note:'Compounds fast once M and A are stable.', exit:'Sleeping through. Cortisol settled. HRV climbing. Then we move to Cycle.' },
-    { letter:'C', name:'Cycle and Signal', tag:'Hormones. Thyroid. Fertility.', line:'Most coaches start here. We start here only after the floor holds.', symptoms:['PMS or perimenopausal weight gain','Low libido, low drive','Irregular cycles or mood swings'], weeks:'8 to 16 weeks', pct:75, note:'Hormone work is patient work. The body responds in cycles, not days.', exit:'Cycle regular. Mood stable. Libido back. Then we lock in Hypertrophy.' },
-    { letter:'H', name:'Hypertrophy and Healthspan', tag:'Build. Periodize. Hold.', line:'Most coaches start here. We finish here.', symptoms:['Plateau on the same plan for months','Slow recovery, soreness lingers','Numbers in the gym going backwards'], weeks:'Ongoing', pct:100, note:'This is the lifelong phase.', exit:'You do not graduate from H. You stay here. We refine and hold.' }
-  ];
-
-  function renderStage() {
-    const container = document.getElementById('marchStages');
-    container.innerHTML = '';
-    STAGE_DATA.forEach((s, i) => {
-      const div = document.createElement('div');
-      div.className = 'march-stage' + (i === currentStage ? ' active' : '');
-      div.innerHTML = `
-        <div class="stage-letter">${s.letter}</div>
-        <div class="stage-name">${s.name}</div>
-        <div class="stage-tag">${s.tag}</div>
-        <div class="stage-tagline">${s.line}</div>
-        <div class="chips-row">
-          <button type="button" class="tap-chip active" data-tab="symptoms">Symptoms</button>
-          <button type="button" class="tap-chip" data-tab="timeline">Timeline</button>
-          <button type="button" class="tap-chip" data-tab="exit">Exit</button>
-        </div>
-        <div class="reveal" data-reveal>
-          <ul>${s.symptoms.map(x => `<li>${x}</li>`).join('')}</ul>
-        </div>`;
-      container.appendChild(div);
-      div.querySelectorAll('.tap-chip').forEach(c => {
-        c.addEventListener('click', () => {
-          div.querySelectorAll('.tap-chip').forEach(o => o.classList.remove('active'));
-          c.classList.add('active');
-          const reveal = div.querySelector('[data-reveal]');
-          if (c.dataset.tab === 'symptoms') {
-            reveal.innerHTML = '<ul>' + s.symptoms.map(x => `<li>${x}</li>`).join('') + '</ul>';
-          } else if (c.dataset.tab === 'timeline') {
-            reveal.innerHTML = `<div style="margin-bottom:8px"><strong>${s.weeks}</strong></div>
-              <div class="timeline-bar"><div class="timeline-bar-fill" style="width:${s.pct}%"></div></div>
-              <div style="margin-top:10px; color:var(--subtext); font-size:12px">${s.note}</div>`;
-          } else {
-            reveal.innerHTML = `<strong style="color:var(--gold)">Graduation:</strong><br>${s.exit}`;
-          }
-        });
-      });
-    });
-    document.getElementById('stageCounter').textContent = STAGES[currentStage] + ' of 5';
-    document.getElementById('stagePrev').disabled = currentStage === 0;
-    document.getElementById('stageNext').disabled = currentStage === STAGES.length - 1;
-  }
-  document.getElementById('stagePrev').addEventListener('click', () => { if (currentStage > 0) { currentStage--; renderStage(); } });
-  document.getElementById('stageNext').addEventListener('click', () => { if (currentStage < STAGES.length - 1) { currentStage++; renderStage(); } });
-
-  // Pricing
-  const PRICING = {
-    3:  { pePif:'$1,400', pePlan:'$1,600', sdPif:'$2,400', sdPlan:'$2,700' },
-    6:  { pePif:'$2,500', pePlan:'$2,900', sdPif:'$4,300', sdPlan:'$4,900' },
-    9:  { pePif:'$3,600', pePlan:'$4,100', sdPif:'$6,100', sdPlan:'$6,900' },
-    12: { pePif:'$4,500', pePlan:'$5,100', sdPif:'$7,700', sdPlan:'$8,600' },
-  };
-  let currentDur = 6;
-  function renderPricing() {
-    const p = PRICING[currentDur];
-    document.getElementById('peDur').textContent = currentDur + ' months';
-    document.getElementById('sdDur').textContent = currentDur + ' months';
-    document.getElementById('pePif').textContent = p.pePif;
-    document.getElementById('pePlan').textContent = p.pePlan;
-    document.getElementById('sdPif').textContent = p.sdPif;
-    document.getElementById('sdPlan').textContent = p.sdPlan;
-  }
-  document.querySelectorAll('.dur-btn').forEach(b => {
-    b.addEventListener('click', () => {
-      document.querySelectorAll('.dur-btn').forEach(o => o.classList.remove('active'));
-      b.classList.add('active');
-      currentDur = parseInt(b.dataset.dur);
-      renderPricing();
+  document.querySelectorAll('[data-video]').forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const v = wrap.querySelector('video');
+      const pill = wrap.querySelector('.unmute-pill');
+      v.muted = !v.muted;
+      if (pill) pill.textContent = v.muted ? 'Tap for sound' : 'Tap to mute';
     });
   });
-
-  // Calendly link is now a real anchor tag, no JS handler needed.
-
-  // Swipe (excludes buttons and videos)
-  let tStartX = 0, tStartY = 0;
-  document.addEventListener('touchstart', e => {
-    tStartX = e.changedTouches[0].screenX;
-    tStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].screenX - tStartX;
-    const dy = e.changedTouches[0].screenY - tStartY;
-    if (Math.abs(dx) < 70 || Math.abs(dy) > 80) return;
-    if (e.target.closest('video, .video-wrap, .path-btn, .dur-btn, .tap-chip, .stage-arrow, button, a, summary, .faq')) return;
-    if (dx < 0) goTo(currentPanel + 1);
-    else goTo(currentPanel - 1);
-  }, { passive: true });
-
-  renderStage();
-  renderRoadmap();
-  renderPricing();
-})();
 </script>
 
 </body>
