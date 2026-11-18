@@ -10,3 +10,20 @@ html{scroll-behavior:auto;scroll-padding-top:28px}body{font-weight:400}a{color:i
 .brand{color:#604638}
 footer .brand,.footer .brand{color:#faf6ee}
 @media(max-width:600px){.brand .brand-logo{width:142px;height:48px}}
+
+/* Cookie banner, matching the main site (assets/consent.js). */
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:200;background:var(--cream);border-top:1px solid var(--border-strong);box-shadow:0 -12px 34px rgba(74,46,31,.16);transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+.cc.on{transform:translateY(0)}
+.cc-in{max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;gap:26px;text-align:left}
+.cc-t{font-size:14px;line-height:1.6;color:var(--text-soft);margin:0;flex:1}
+.cc-t a{color:var(--terracotta);text-underline-offset:3px}
+.cc-t a:hover{color:var(--copper)}
+.cc-b{display:flex;gap:10px;flex:0 0 auto}
+.cc .btn{display:inline-block;min-height:44px;padding:12px 26px;border:0;border-radius:100px;background:var(--terracotta);color:#fff;font:500 14px var(--sans);cursor:pointer;transition:background .18s}
+.cc .btn:hover{background:var(--copper)}
+.cc .btn.ghost{background:transparent;border:1px solid var(--border-strong);color:var(--text-soft)}
+.cc .btn.ghost:hover{background:rgba(74,46,31,.06);color:var(--text)}
+.cc .btn:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+.footer .cc-reopen{cursor:pointer}
+@media(max-width:760px){.cc-in{flex-direction:column;align-items:stretch;gap:16px;padding:18px 22px}.cc-b .btn{flex:1;text-align:center}}
+@media(prefers-reduced-motion:reduce){.cc{transition:none}}
